@@ -1,0 +1,6 @@
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0minfo[0m] [0m[0mTest uk.ac.york.minesweeper.[33mMinesweeperFrameTest[0m.[36mactionPerformed[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest uk.ac.york.minesweeper.[33mMinesweeperFrameTest[0m.[36mactionPerformed[0m finished[0m
+[0m[[0m[0minfo[0m] [0m[0mTest uk.ac.york.minesweeper.[33mMinesweeperFrameTest[0m.[36mmain[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest uk.ac.york.minesweeper.[33mMinesweeperFrameTest[0m.[36mmain[0m finished[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 3.946s[0m[0m

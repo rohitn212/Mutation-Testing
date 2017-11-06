@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Minefield.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-minesweeper-master</a> &gt; <a href="index.source.html" class="el_package">uk.ac.york.minesweeper</a> &gt; <span class="el_source">Minefield.java</span></div><h1>Minefield.java</h1><pre class="source lang-java linenums">package uk.ac.york.minesweeper;
+
+import java.util.Arrays;
+import java.util.Random;
+
+/**
+ * Class containing the game data for the minesweeper game
+ */
+public class Minefield
+{
+    // Array containing tile values (-1 = mine)
+    private final byte[][] valuesArray;
+
+    // Array containing tile states
+    private final TileState[][] stateArray;
+
+    // Number of mines
+    private final int mines;
+
+    // Number of extra tiles which need to uncovered to win
+    private int tilesLeft;
+
+    // If true, uncovers mines when the game finishes
+<span class="fc" id="L24">    private boolean uncoverMinesAtEnd = true;</span>
+
+    // State of the game
+<span class="fc" id="L27">    private GameState gameState = GameState.NOT_STARTED;</span>
+
+    /**
+     * Initializes a new Minefield class with the given properties
+     *
+     * The mine locations are not allocated until the first click is made
+     *
+     * @param width width of the minefield in tiles
+     * @param height height of the minefield in tiles
+     * @param mines number of mines
+     */
+    public Minefield(int width, int height, int mines)
+<span class="fc" id="L39">    {</span>
+<span class="fc" id="L40">        int tilesLeft = (width * height) - mines;</span>
+
+        // Validate arguments
+<span class="pc bpc" id="L43" title="3 of 6 branches missed.">        if (width &lt; 1 || height &lt; 1 || mines &lt; 0)</span>
+<span class="nc" id="L44">            throw new IllegalArgumentException(&quot;invalid minefield dimensions&quot;);</span>
+
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (tilesLeft &lt;= 0)</span>
+<span class="nc" id="L47">            throw new IllegalArgumentException(&quot;too many mines&quot;);</span>
+
+        // Save initial properties
+<span class="fc" id="L50">        this.mines = mines;</span>
+<span class="fc" id="L51">        this.tilesLeft = tilesLeft;</span>
+
+        // Create arrays (empty + covered)
+<span class="fc" id="L54">        TileState[][] stateArray = new TileState[width][height];</span>
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (int x = 0; x &lt; width; x++)</span>
+<span class="fc" id="L57">            Arrays.fill(stateArray[x], TileState.COVERED);</span>
+
+<span class="fc" id="L59">        this.stateArray = stateArray;</span>
+<span class="fc" id="L60">        this.valuesArray = new byte[width][height];</span>
+<span class="fc" id="L61">    }</span>
+
+    /**
+     * Gets the width of the minefield in tiles
+     *
+     * @return width of the minefield
+     */
+    public int getWidth()
+    {
+<span class="fc" id="L70">        return valuesArray.length;</span>
+    }
+
+    /**
+     * Gets the height of the minefield in tiles
+     *
+     * @return height of the minefield
+     */
+    public int getHeight()
+    {
+<span class="fc" id="L80">        return valuesArray[0].length;</span>
+    }
+
+    /**
+     * Gets the total number of mines in the minefield
+     *
+     * @return total number of mines
+     */
+    public int getMines()
+    {
+<span class="nc" id="L90">        return mines;</span>
+    }
+
+    /**
+     * Gets a value which is true if all mines are uncovered at the end of the game
+     *
+     * @return true if mines are uncovered at the end
+     */
+    public boolean isUncoveringMinesAtEnd()
+    {
+<span class="nc" id="L100">        return uncoverMinesAtEnd;</span>
+    }
+
+    /**
+     * Sets a value determining whether mines are uncovered at the end of the game
+     *
+     * @param uncoverMinesAtEnd true if mines are uncovered at the end
+     */
+    public void setUncoverMinesAtEnd(boolean uncoverMinesAtEnd)
+    {
+<span class="nc" id="L110">        this.uncoverMinesAtEnd = uncoverMinesAtEnd;</span>
+<span class="nc" id="L111">    }</span>
+
+    /**
+     * Gets the current state of the game
+     *
+     * @return the state of the game
+     */
+    public GameState getGameState()
+    {
+<span class="nc" id="L120">        return gameState;</span>
+    }
+
+    /**
+     * Returns true if the game has finished
+     *
+     * @return true if the game has finished
+     */
+    public boolean isFinished()
+    {
+<span class="pc bpc" id="L130" title="2 of 4 branches missed.">        return gameState != GameState.RUNNING &amp;&amp; gameState != GameState.NOT_STARTED;</span>
+    }
+
+    /**
+     * Gets the value of the given tile (mine / surrounding mines)
+     *
+     * This should only be called AFTER the first tile is clicked (or when a tile is uncovered)
+     *
+     * @param x x position of tile
+     * @param y y position of tile
+     * @return value of that tile (-1 = mine)
+     */
+    public int getTileValue(int x, int y)
+    {
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (gameState == GameState.NOT_STARTED)</span>
+<span class="nc" id="L145">            throw new IllegalStateException(&quot;you must call uncover at least once before using getTileValue&quot;);</span>
+
+<span class="nc" id="L147">        return valuesArray[x][y];</span>
+    }
+
+    /**
+     * Gets the state of the given tile
+     *
+     * @param x x position of tile
+     * @param y y position of tile
+     * @return state of that tile
+     */
+    public TileState getTileState(int x, int y)
+    {
+<span class="nc" id="L159">        return stateArray[x][y];</span>
+    }
+
+    /**
+     * Updates the state of the given tile
+     *
+     * Can be used to add flags and uncover tiles.
+     * You cannot cover a tile that has already been uncovered.
+     * If a tile is uncovered, other tile states and the game state may be updated.
+     *
+     * @param x x position of tile
+     * @param y y position of tile
+     * @param newState the tile's new state
+     */
+    public void setTileState(int x, int y, TileState newState)
+    {
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (isFinished())</span>
+<span class="nc" id="L176">            throw new IllegalStateException(&quot;the game has finished&quot;);</span>
+
+<span class="nc bnc" id="L178" title="All 3 branches missed.">        switch (newState)</span>
+        {
+            case COVERED:
+            case FLAGGED:
+            case QUESTION:
+                // Set unless we're recovering a tile
+<span class="nc bnc" id="L184" title="All 2 branches missed.">                if (stateArray[x][y] == TileState.UNCOVERED)</span>
+<span class="nc" id="L185">                    throw new UnsupportedOperationException(&quot;you cannot cover a tile once uncovered&quot;);</span>
+
+<span class="nc" id="L187">                stateArray[x][y] = newState;</span>
+<span class="nc" id="L188">                break;</span>
+
+            case UNCOVERED:
+                // Forward to uncover
+<span class="nc" id="L192">                uncover(x, y);</span>
+<span class="nc" id="L193">                break;</span>
+
+            default:
+<span class="nc" id="L196">                throw new IllegalArgumentException(&quot;newState is not a valid tile state&quot;);</span>
+        }
+<span class="nc" id="L198">    }</span>
+
+    /**
+     * Uncovers the tile at the given location
+     *
+     * This method is equivalent to calling {@code setTileState(x, y, TileState.UNCOVERED)}
+     *
+     * @param x x position of tile
+     * @param y y position of tile
+     */
+    public void uncover(int x, int y)
+    {
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">        if (isFinished())</span>
+<span class="nc" id="L211">            throw new IllegalStateException(&quot;the game has finished&quot;);</span>
+
+        // New game?
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">        if (gameState == GameState.NOT_STARTED)</span>
+        {
+<span class="fc" id="L216">            initValues(x, y);</span>
+<span class="fc" id="L217">            gameState = GameState.RUNNING;</span>
+        }
+
+        // Perform any uncovering
+<span class="fc" id="L221">        uncoverNoChecks(x, y);</span>
+<span class="fc" id="L222">    }</span>
+
+    /** Tile processor for uncoverNoChecks which uncovers a tile immediately */
+<span class="fc" id="L225">    private final SurroundingTilesProcessor PROCESSOR_UNCOVER = new SurroundingTilesProcessor()</span>
+<span class="fc" id="L226">    {</span>
+        @Override
+        public void process(int x, int y)
+        {
+<span class="fc" id="L230">            uncoverNoChecks(x, y);</span>
+<span class="fc" id="L231">        }</span>
+    };
+
+    /**
+     * Uncovers the given tile and surrounding tiles without performing state checks
+     *
+     * @param x x position of tile
+     * @param y y position of tile
+     */
+    private void uncoverNoChecks(int x, int y)
+    {
+<span class="fc" id="L242">        int width = getWidth();</span>
+<span class="fc" id="L243">        int height = getHeight();</span>
+
+        // Ignore if the tile does not exist / is already uncovered
+<span class="pc bpc" id="L246" title="4 of 8 branches missed.">        if (x &lt; 0 || y &lt; 0 || x &gt;= width || y &gt;= height)</span>
+<span class="nc" id="L247">            return;</span>
+
+<span class="fc bfc" id="L249" title="All 2 branches covered.">        if (stateArray[x][y] == TileState.UNCOVERED)</span>
+<span class="fc" id="L250">            return;</span>
+
+        // Uncover this tile
+<span class="fc" id="L253">        stateArray[x][y] = TileState.UNCOVERED;</span>
+<span class="fc" id="L254">        tilesLeft--;</span>
+
+        // Check for special tiles (0 and mines)
+<span class="fc bfc" id="L257" title="All 2 branches covered.">        if (valuesArray[x][y] == 0)</span>
+        {
+            // Uncover all surrounding tiles
+<span class="fc" id="L260">            processSurrounding(x, y, PROCESSOR_UNCOVER);</span>
+        }
+<span class="pc bpc" id="L262" title="1 of 2 branches missed.">        else if (valuesArray[x][y] &lt; 0)</span>
+        {
+            // Hit a mine
+<span class="nc" id="L265">            gameState = GameState.LOST;</span>
+<span class="nc" id="L266">            uncoverAllMines();</span>
+        }
+<span class="pc bpc" id="L268" title="3 of 4 branches missed.">        else if (tilesLeft &lt;= 0 &amp;&amp; gameState == GameState.RUNNING)</span>
+        {
+            // Uncovered all the non-mines!
+            //  The gameState check is required for chording since you may hit a mine and then win
+            //  later on the same move (which we don't want to overwrite)
+<span class="nc" id="L273">            gameState = GameState.WON;</span>
+<span class="nc" id="L274">            uncoverAllMines();</span>
+        }
+<span class="fc" id="L276">    }</span>
+
+    /**
+     * Uncovers all mines if uncoverMinesAtEnd is set
+     *
+     * This does not uncover correctly flagged mines, but sets incorrectly
+     * flagged mines to questions.
+     */
+    private void uncoverAllMines()
+    {
+<span class="nc bnc" id="L286" title="All 2 branches missed.">        if (uncoverMinesAtEnd)</span>
+        {
+<span class="nc" id="L288">            int width = getWidth();</span>
+<span class="nc" id="L289">            int height = getHeight();</span>
+
+            // Set state of all mines to uncovered
+<span class="nc bnc" id="L292" title="All 2 branches missed.">            for (int x = 0; x &lt; width; x++)</span>
+            {
+<span class="nc bnc" id="L294" title="All 2 branches missed.">                for (int y = 0; y &lt; height; y++)</span>
+                {
+<span class="nc bnc" id="L296" title="All 2 branches missed.">                    if (valuesArray[x][y] &lt; 0)</span>
+                    {
+                        // Uncover if not flagged
+<span class="nc bnc" id="L299" title="All 2 branches missed.">                        if (stateArray[x][y] != TileState.FLAGGED)</span>
+<span class="nc" id="L300">                            stateArray[x][y] = TileState.UNCOVERED;</span>
+                    }
+                    else
+                    {
+                        // Set flags to questions
+<span class="nc bnc" id="L305" title="All 2 branches missed.">                        if (stateArray[x][y] == TileState.FLAGGED)</span>
+<span class="nc" id="L306">                            stateArray[x][y] = TileState.QUESTION;</span>
+                    }
+                }
+            }
+        }
+<span class="nc" id="L311">    }</span>
+
+    /** Tile processor for chord which uncovers a tile if it is not flagged */
+<span class="fc" id="L314">    private final SurroundingTilesProcessor PROCESSOR_CHORD = new SurroundingTilesProcessor()</span>
+<span class="fc" id="L315">    {</span>
+        @Override
+        public void process(int x, int y)
+        {
+            // Uncover non-flagged tiles
+<span class="nc bnc" id="L320" title="All 2 branches missed.">            if (stateArray[x][y] != TileState.FLAGGED)</span>
+<span class="nc" id="L321">                uncoverNoChecks(x, y);</span>
+<span class="nc" id="L322">        }</span>
+    };
+
+    /**
+     * Attempts to chord using the given central position
+     *
+     * Chording causes all the surrounding tiles to be uncovered if the number of
+     * surrounding flags is equal to the value on the central tile.
+     *
+     * This method does nothing if the central tile is still covered of the number of
+     * surrounding flags in incorrect.
+     *
+     * @param x x position of central tile
+     * @param y y position of central tile
+     */
+    public void chord(int x, int y)
+    {
+<span class="nc bnc" id="L339" title="All 2 branches missed.">        if (isFinished())</span>
+<span class="nc" id="L340">            throw new IllegalStateException(&quot;the game has finished&quot;);</span>
+
+        // Ensure the tile is uncovered
+<span class="nc bnc" id="L343" title="All 2 branches missed.">        if (stateArray[x][y] != TileState.UNCOVERED)</span>
+<span class="nc" id="L344">            return;</span>
+
+        // Check number of surrounding flags
+<span class="nc bnc" id="L347" title="All 2 branches missed.">        if (valuesArray[x][y] == countSurroundingFlags(x, y))</span>
+        {
+            // Uncover all surrounding tiles which are not flagged
+<span class="nc" id="L350">            processSurrounding(x, y, PROCESSOR_CHORD);</span>
+        }
+<span class="nc" id="L352">    }</span>
+
+    /** Tile processor for initValues which increments a tile's value if it is not a mine */
+<span class="fc" id="L355">    private final SurroundingTilesProcessor PROCESSOR_INIT_VALUES = new SurroundingTilesProcessor()</span>
+<span class="fc" id="L356">    {</span>
+        @Override
+        public void process(int x, int y)
+        {
+            // Increment values which are not mines
+<span class="pc bpc" id="L361" title="1 of 2 branches missed.">            if (valuesArray[x][y] &gt;= 0)</span>
+<span class="fc" id="L362">                valuesArray[x][y]++;</span>
+<span class="fc" id="L363">        }</span>
+    };
+
+    /**
+     * Initializes the values grid for a new game
+     *
+     * startX and startY are used to prevent mines from appearing at the start location
+     *
+     * @param startX x position to prevent mines for
+     * @param startY y position to prevent mines for
+     */
+    private void initValues(int startX, int startY)
+    {
+<span class="fc" id="L376">        int width = getWidth();</span>
+<span class="fc" id="L377">        int height = getHeight();</span>
+
+        // Randomly place all the mines
+<span class="fc" id="L380">        Random rnd = new Random();</span>
+
+<span class="fc bfc" id="L382" title="All 2 branches covered.">        for (int i = 0; i &lt; mines; i++)</span>
+        {
+            int x, y;
+
+            // Keep trying random positions until we've found an acceptable one
+            do
+            {
+<span class="fc" id="L389">                x = rnd.nextInt(width);</span>
+<span class="fc" id="L390">                y = rnd.nextInt(height);</span>
+            }
+<span class="pc bpc" id="L392" title="2 of 6 branches missed.">            while(valuesArray[x][y] &lt; 0 || (x == startX &amp;&amp; y == startY));</span>
+
+            // Set as a mine
+<span class="fc" id="L395">            valuesArray[x][y] = -1;</span>
+
+            // Increment number of mines in all surrounding tiles
+<span class="fc" id="L398">            processSurrounding(x, y, PROCESSOR_INIT_VALUES);</span>
+        }
+<span class="fc" id="L400">    }</span>
+
+    /**
+     * Counts the number of flags surrounding a position
+     *
+     * @param x x position of central tile
+     * @param y y position of central tile
+     * @return number of surrounding flags
+     */
+    private int countSurroundingFlags(int x, int y)
+    {
+<span class="nc" id="L411">        int count = 0;</span>
+<span class="nc" id="L412">        int width = getWidth();</span>
+<span class="nc" id="L413">        int height = getHeight();</span>
+
+<span class="nc bnc" id="L415" title="All 2 branches missed.">        if (y &gt; 0)</span>
+        {
+<span class="nc bnc" id="L417" title="All 4 branches missed.">            if (x &gt; 0)          if (stateArray[x - 1][y - 1] == TileState.FLAGGED) count++;</span>
+<span class="nc bnc" id="L418" title="All 2 branches missed.">                                if (stateArray[x    ][y - 1] == TileState.FLAGGED) count++;</span>
+<span class="nc bnc" id="L419" title="All 4 branches missed.">            if (x &lt; width - 1)  if (stateArray[x + 1][y - 1] == TileState.FLAGGED) count++;</span>
+        }
+
+<span class="nc bnc" id="L422" title="All 4 branches missed.">        if (x &gt; 0)              if (stateArray[x - 1][y    ] == TileState.FLAGGED) count++;</span>
+<span class="nc bnc" id="L423" title="All 4 branches missed.">        if (x &lt; width - 1)      if (stateArray[x + 1][y    ] == TileState.FLAGGED) count++;</span>
+
+<span class="nc bnc" id="L425" title="All 2 branches missed.">        if (y &lt; height - 1)</span>
+        {
+<span class="nc bnc" id="L427" title="All 4 branches missed.">            if (x &gt; 0)          if (stateArray[x - 1][y + 1] == TileState.FLAGGED) count++;</span>
+<span class="nc bnc" id="L428" title="All 2 branches missed.">                                if (stateArray[x    ][y + 1] == TileState.FLAGGED) count++;</span>
+<span class="nc bnc" id="L429" title="All 4 branches missed.">            if (x &lt; width - 1)  if (stateArray[x + 1][y + 1] == TileState.FLAGGED) count++;</span>
+        }
+
+<span class="nc" id="L432">        return count;</span>
+    }
+
+    /**
+     * Calls a function on all the surrounding tiles which exist
+     *
+     * @param x x position of central tile
+     * @param y y position of central tile
+     */
+    private void processSurrounding(int x, int y, SurroundingTilesProcessor processor)
+    {
+<span class="fc" id="L443">        int width = getWidth();</span>
+<span class="fc" id="L444">        int height = getHeight();</span>
+
+<span class="fc bfc" id="L446" title="All 2 branches covered.">        if (y &gt; 0)</span>
+        {
+<span class="fc bfc" id="L448" title="All 2 branches covered.">            if (x &gt; 0)          processor.process(x - 1, y - 1);</span>
+<span class="fc" id="L449">                                processor.process(x    , y - 1);</span>
+<span class="fc bfc" id="L450" title="All 2 branches covered.">            if (x &lt; width - 1)  processor.process(x + 1, y - 1);</span>
+        }
+
+<span class="fc bfc" id="L453" title="All 2 branches covered.">        if (x &gt; 0)              processor.process(x - 1, y    );</span>
+<span class="fc bfc" id="L454" title="All 2 branches covered.">        if (x &lt; width - 1)      processor.process(x + 1, y    );</span>
+
+<span class="fc bfc" id="L456" title="All 2 branches covered.">        if (y &lt; height - 1)</span>
+        {
+<span class="fc bfc" id="L458" title="All 2 branches covered.">            if (x &gt; 0)          processor.process(x - 1, y + 1);</span>
+<span class="fc" id="L459">                                processor.process(x    , y + 1);</span>
+<span class="fc bfc" id="L460" title="All 2 branches covered.">            if (x &lt; width - 1)  processor.process(x + 1, y + 1);</span>
+        }
+<span class="fc" id="L462">    }</span>
+
+    /**
+     * Gets a string representing the minefield's current visible state
+     */
+    @Override
+    public String toString()
+    {
+<span class="nc" id="L470">        int width = getWidth();</span>
+<span class="nc" id="L471">        int height = getHeight();</span>
+
+<span class="nc" id="L473">        StringBuilder builder = new StringBuilder();</span>
+
+        // Write top line
+<span class="nc" id="L476">        builder.append('+');</span>
+<span class="nc bnc" id="L477" title="All 2 branches missed.">        for (int x = 0; x &lt; width; x++)</span>
+<span class="nc" id="L478">            builder.append('-');</span>
+<span class="nc" id="L479">        builder.append(&quot;+\n&quot;);</span>
+
+        // Write each line of the minefield
+<span class="nc bnc" id="L482" title="All 2 branches missed.">        for (int y = 0; y &lt; height; y++)</span>
+        {
+<span class="nc" id="L484">            builder.append('|');</span>
+
+<span class="nc bnc" id="L486" title="All 2 branches missed.">            for (int x = 0; x &lt; width; x++)</span>
+            {
+                char c;
+
+                // Handle each tile state
+<span class="nc bnc" id="L491" title="All 4 branches missed.">                switch (getTileState(x, y))</span>
+                {
+                    case COVERED:
+<span class="nc" id="L494">                        c = '#';</span>
+<span class="nc" id="L495">                        break;</span>
+
+                    case FLAGGED:
+<span class="nc" id="L498">                        c = 'f';</span>
+<span class="nc" id="L499">                        break;</span>
+
+                    case QUESTION:
+<span class="nc" id="L502">                        c = '?';</span>
+<span class="nc" id="L503">                        break;</span>
+
+                    default:
+                        // Show tile's value
+<span class="nc" id="L507">                        int tileValue = getTileValue(x, y);</span>
+
+<span class="nc bnc" id="L509" title="All 2 branches missed.">                        if (tileValue &lt; 0)</span>
+<span class="nc" id="L510">                            c = '!';</span>
+<span class="nc bnc" id="L511" title="All 2 branches missed.">                        else if(tileValue == 0)</span>
+<span class="nc" id="L512">                            c = ' ';</span>
+                        else
+<span class="nc" id="L514">                            c = (char) ('0' + tileValue);</span>
+                }
+
+<span class="nc" id="L517">                builder.append(c);</span>
+            }
+
+<span class="nc" id="L520">            builder.append(&quot;|\n&quot;);</span>
+        }
+
+        // Write bottom line
+<span class="nc" id="L524">        builder.append('+');</span>
+<span class="nc bnc" id="L525" title="All 2 branches missed.">        for (int x = 0; x &lt; width; x++)</span>
+<span class="nc" id="L526">            builder.append('-');</span>
+<span class="nc" id="L527">        builder.append(&quot;+\n&quot;);</span>
+
+<span class="nc" id="L529">        return builder.toString();</span>
+    }
+
+    /**
+     * Interface used for processing surrounding tiles
+     */
+    private interface SurroundingTilesProcessor
+    {
+        /**
+         * Processes the given tile (which is guaranteed to exist)
+         *
+         * @param x x position of tile
+         * @param y y position of tile
+         */
+        public void process(int x, int y);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
