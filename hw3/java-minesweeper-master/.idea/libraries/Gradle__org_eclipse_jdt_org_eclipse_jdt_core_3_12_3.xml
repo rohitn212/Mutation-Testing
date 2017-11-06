@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.eclipse.jdt:org.eclipse.jdt.core:3.12.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.core/3.12.3/b5c5565c5984fffd033b278f059180c3247a79ab/org.eclipse.jdt.core-3.12.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.core/3.12.3/85c24f232f2827e13b2dcd287fece6ea2f538a48/org.eclipse.jdt.core-3.12.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

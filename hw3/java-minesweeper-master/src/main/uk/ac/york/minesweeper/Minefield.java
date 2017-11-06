@@ -1,7 +1,9 @@
 package uk.ac.york.minesweeper;
 
+import static uk.ac.york.minesweeper.TemplateClass.instrum;
 import java.util.Arrays;
 import java.util.Random;
+import javafx.util.Pair;
 
 /**
  * Class containing the game data for the minesweeper game
@@ -39,25 +41,30 @@ public class Minefield
     {
         int tilesLeft = (width * height) - mines;
 
-        // Validate arguments
+        instrum(46,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.width",width),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.height",height),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.mines",mines));
+		// Validate arguments
         if (width < 1 || height < 1 || mines < 0)
             throw new IllegalArgumentException("invalid minefield dimensions");
 
-        if (tilesLeft <= 0)
+        instrum(50,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.tilesLeft",tilesLeft));
+		if (tilesLeft <= 0)
             throw new IllegalArgumentException("too many mines");
 
         // Save initial properties
         this.mines = mines;
+		instrum(54,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.mines",this.mines),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.mines",mines));
         this.tilesLeft = tilesLeft;
+		instrum(56,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.tilesLeft",this.tilesLeft),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.tilesLeft",tilesLeft));
 
         // Create arrays (empty + covered)
         TileState[][] stateArray = new TileState[width][height];
 
-        for (int x = 0; x < width; x++)
-            Arrays.fill(stateArray[x], TileState.COVERED);
+        for (int x = 0; x < width; x++) {Arrays.fill(stateArray[x],TileState.COVERED);instrum(62,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.x",x));}
 
         this.stateArray = stateArray;
+		instrum(64,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",this.stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.stateArray",stateArray));
         this.valuesArray = new byte[width][height];
+		instrum(66,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",this.valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.width",width),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.height",height));
     }
 
     /**
@@ -67,7 +74,8 @@ public class Minefield
      */
     public int getWidth()
     {
-        return valuesArray.length;
+        instrum(78,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray));
+		return valuesArray.length;
     }
 
     /**
@@ -77,7 +85,8 @@ public class Minefield
      */
     public int getHeight()
     {
-        return valuesArray[0].length;
+        instrum(89,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",this.valuesArray));
+		return valuesArray[0].length;
     }
 
     /**
@@ -87,7 +96,8 @@ public class Minefield
      */
     public int getMines()
     {
-        return mines;
+        instrum(100,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.mines",mines));
+		return mines;
     }
 
     /**
@@ -97,7 +107,8 @@ public class Minefield
      */
     public boolean isUncoveringMinesAtEnd()
     {
-        return uncoverMinesAtEnd;
+        instrum(111,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverMinesAtEnd",uncoverMinesAtEnd));
+		return uncoverMinesAtEnd;
     }
 
     /**
@@ -108,6 +119,7 @@ public class Minefield
     public void setUncoverMinesAtEnd(boolean uncoverMinesAtEnd)
     {
         this.uncoverMinesAtEnd = uncoverMinesAtEnd;
+		instrum(121,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverMinesAtEnd",this.uncoverMinesAtEnd),new Pair<>("uk.ac.york.minesweeper.Minefield.setUncoverMinesAtEnd.uncoverMinesAtEnd",uncoverMinesAtEnd));
     }
 
     /**
@@ -117,7 +129,8 @@ public class Minefield
      */
     public GameState getGameState()
     {
-        return gameState;
+        instrum(133,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));
+		return gameState;
     }
 
     /**
@@ -127,7 +140,8 @@ public class Minefield
      */
     public boolean isFinished()
     {
-        return gameState != GameState.RUNNING && gameState != GameState.NOT_STARTED;
+        instrum(144,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));
+		return gameState != GameState.RUNNING && gameState != GameState.NOT_STARTED;
     }
 
     /**
@@ -141,10 +155,12 @@ public class Minefield
      */
     public int getTileValue(int x, int y)
     {
-        if (gameState == GameState.NOT_STARTED)
+        instrum(159,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));
+		if (gameState == GameState.NOT_STARTED)
             throw new IllegalStateException("you must call uncover at least once before using getTileValue");
 
-        return valuesArray[x][y];
+        instrum(163,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.getTileValue.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.getTileValue.y",y));
+		return valuesArray[x][y];
     }
 
     /**
@@ -156,7 +172,8 @@ public class Minefield
      */
     public TileState getTileState(int x, int y)
     {
-        return stateArray[x][y];
+        instrum(176,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.getTileState.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.getTileState.y",y));
+		return stateArray[x][y];
     }
 
     /**
@@ -175,16 +192,15 @@ public class Minefield
         if (isFinished())
             throw new IllegalStateException("the game has finished");
 
-        switch (newState)
+        instrum(196,"switch",new Pair<>("uk.ac.york.minesweeper.Minefield.setTileState.newState",newState));
+		switch (newState)
         {
             case COVERED:
             case FLAGGED:
             case QUESTION:
-                // Set unless we're recovering a tile
-                if (stateArray[x][y] == TileState.UNCOVERED)
-                    throw new UnsupportedOperationException("you cannot cover a tile once uncovered");
+			{instrum(202,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.setTileState.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.setTileState.y",y));if (stateArray[x][y] == TileState.UNCOVERED)throw new UnsupportedOperationException("you cannot cover a tile once uncovered");}
 
-                stateArray[x][y] = newState;
+			{stateArray[x][y]=newState;instrum(203,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.setTileState.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.setTileState.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.setTileState.newState",newState));}
                 break;
 
             case UNCOVERED:
@@ -210,11 +226,13 @@ public class Minefield
         if (isFinished())
             throw new IllegalStateException("the game has finished");
 
-        // New game?
+        instrum(231,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));
+		// New game?
         if (gameState == GameState.NOT_STARTED)
         {
             initValues(x, y);
             gameState = GameState.RUNNING;
+			instrum(234,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));
         }
 
         // Perform any uncovering
@@ -242,37 +260,28 @@ public class Minefield
         int width = getWidth();
         int height = getHeight();
 
-        // Ignore if the tile does not exist / is already uncovered
+        instrum(265,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.width",width),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.height",height));
+		// Ignore if the tile does not exist / is already uncovered
         if (x < 0 || y < 0 || x >= width || y >= height)
             return;
 
-        if (stateArray[x][y] == TileState.UNCOVERED)
+        instrum(269,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.y",y));
+		if (stateArray[x][y] == TileState.UNCOVERED)
             return;
 
         // Uncover this tile
         stateArray[x][y] = TileState.UNCOVERED;
+		instrum(273,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.y",y));
         tilesLeft--;
+		instrum(275,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.tilesLeft",tilesLeft));
 
-        // Check for special tiles (0 and mines)
+        instrum(280,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.y",y));
+		// Check for special tiles (0 and mines)
         if (valuesArray[x][y] == 0)
         {
             // Uncover all surrounding tiles
             processSurrounding(x, y, PROCESSOR_UNCOVER);
-        }
-        else if (valuesArray[x][y] < 0)
-        {
-            // Hit a mine
-            gameState = GameState.LOST;
-            uncoverAllMines();
-        }
-        else if (tilesLeft <= 0 && gameState == GameState.RUNNING)
-        {
-            // Uncovered all the non-mines!
-            //  The gameState check is required for chording since you may hit a mine and then win
-            //  later on the same move (which we don't want to overwrite)
-            gameState = GameState.WON;
-            uncoverAllMines();
-        }
+        }else {instrum(285,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverNoChecks.y",y));if (valuesArray[x][y] < 0){gameState=GameState.LOST;instrum(287,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));uncoverAllMines();} else {instrum(291,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.tilesLeft",tilesLeft),new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));if (tilesLeft <= 0 && gameState == GameState.RUNNING){gameState=GameState.WON;instrum(295,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.gameState",gameState));uncoverAllMines();}}}
     }
 
     /**
@@ -283,7 +292,8 @@ public class Minefield
      */
     private void uncoverAllMines()
     {
-        if (uncoverMinesAtEnd)
+        instrum(310,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverMinesAtEnd",uncoverMinesAtEnd));
+		if (uncoverMinesAtEnd)
         {
             int width = getWidth();
             int height = getHeight();
@@ -291,19 +301,22 @@ public class Minefield
             // Set state of all mines to uncovered
             for (int x = 0; x < width; x++)
             {
-                for (int y = 0; y < height; y++)
+                instrum(316,"for",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.width",width));
+				for (int y = 0; y < height; y++)
                 {
-                    if (valuesArray[x][y] < 0)
+                    instrum(319,"for",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.height",height));
+					instrum(323,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.y",y));
+					if (valuesArray[x][y] < 0)
                     {
-                        // Uncover if not flagged
-                        if (stateArray[x][y] != TileState.FLAGGED)
-                            stateArray[x][y] = TileState.UNCOVERED;
+                        instrum(327,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.y",y));
+						// Uncover if not flagged
+                        if (stateArray[x][y] != TileState.FLAGGED){stateArray[x][y]=TileState.UNCOVERED;instrum(327,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.y",y));}
                     }
                     else
                     {
-                        // Set flags to questions
-                        if (stateArray[x][y] == TileState.FLAGGED)
-                            stateArray[x][y] = TileState.QUESTION;
+                        instrum(333,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.y",y));
+						// Set flags to questions
+                        if (stateArray[x][y] == TileState.FLAGGED){stateArray[x][y]=TileState.QUESTION;instrum(333,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverAllMines.y",y));}
                     }
                 }
             }
@@ -316,7 +329,8 @@ public class Minefield
         @Override
         public void process(int x, int y)
         {
-            // Uncover non-flagged tiles
+            instrum(348,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.process.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.process.y",y));
+			// Uncover non-flagged tiles
             if (stateArray[x][y] != TileState.FLAGGED)
                 uncoverNoChecks(x, y);
         }
@@ -339,11 +353,13 @@ public class Minefield
         if (isFinished())
             throw new IllegalStateException("the game has finished");
 
-        // Ensure the tile is uncovered
+        instrum(372,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.chord.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.chord.y",y));
+		// Ensure the tile is uncovered
         if (stateArray[x][y] != TileState.UNCOVERED)
             return;
 
-        // Check number of surrounding flags
+        instrum(377,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.chord.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.chord.y",y));
+		// Check number of surrounding flags
         if (valuesArray[x][y] == countSurroundingFlags(x, y))
         {
             // Uncover all surrounding tiles which are not flagged
@@ -357,9 +373,9 @@ public class Minefield
         @Override
         public void process(int x, int y)
         {
-            // Increment values which are not mines
-            if (valuesArray[x][y] >= 0)
-                valuesArray[x][y]++;
+            instrum(392,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.process.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.process.y",y));
+			// Increment values which are not mines
+            if (valuesArray[x][y] >= 0){valuesArray[x][y]++;instrum(392,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.process.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.process.y",y));}
         }
     };
 
@@ -381,18 +397,23 @@ public class Minefield
 
         for (int i = 0; i < mines; i++)
         {
-            int x, y;
+            instrum(412,"for",new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.i",i),new Pair<>("uk.ac.york.minesweeper.Minefield.mines",mines));
+			int x, y;
 
             // Keep trying random positions until we've found an acceptable one
             do
             {
                 x = rnd.nextInt(width);
+				instrum(421,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.rnd",rnd),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.width",width));
                 y = rnd.nextInt(height);
+				instrum(423,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.rnd",rnd),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.height",height));
+				instrum(424,"do",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.startX",startX),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.startY",startY));
             }
             while(valuesArray[x][y] < 0 || (x == startX && y == startY));
 
             // Set as a mine
             valuesArray[x][y] = -1;
+			instrum(429,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.initValues.y",y));
 
             // Increment number of mines in all surrounding tiles
             processSurrounding(x, y, PROCESSOR_INIT_VALUES);
@@ -412,24 +433,35 @@ public class Minefield
         int width = getWidth();
         int height = getHeight();
 
-        if (y > 0)
+        instrum(451,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));
+		if (y > 0)
         {
-            if (x > 0)          if (stateArray[x - 1][y - 1] == TileState.FLAGGED) count++;
-                                if (stateArray[x    ][y - 1] == TileState.FLAGGED) count++;
-            if (x < width - 1)  if (stateArray[x + 1][y - 1] == TileState.FLAGGED) count++;
+            instrum(454,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x));
+			if (x > 0){instrum(454,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));if (stateArray[x - 1][y - 1] == TileState.FLAGGED){count++;instrum(452,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}}
+                                instrum(454,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));
+								if (stateArray[x    ][y - 1] == TileState.FLAGGED){count++;instrum(453,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}
+            instrum(455,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.width",width));
+			if (x < width - 1){instrum(455,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));if (stateArray[x + 1][y - 1] == TileState.FLAGGED){count++;instrum(453,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}}
         }
 
-        if (x > 0)              if (stateArray[x - 1][y    ] == TileState.FLAGGED) count++;
-        if (x < width - 1)      if (stateArray[x + 1][y    ] == TileState.FLAGGED) count++;
+        instrum(457,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x));
+		if (x > 0){instrum(457,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));if (stateArray[x - 1][y] == TileState.FLAGGED){count++;instrum(455,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}}
+        instrum(457,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.width",width));
+		if (x < width - 1){instrum(457,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));if (stateArray[x + 1][y] == TileState.FLAGGED){count++;instrum(455,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}}
 
-        if (y < height - 1)
+        instrum(458,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.height",height));
+		if (y < height - 1)
         {
-            if (x > 0)          if (stateArray[x - 1][y + 1] == TileState.FLAGGED) count++;
-                                if (stateArray[x    ][y + 1] == TileState.FLAGGED) count++;
-            if (x < width - 1)  if (stateArray[x + 1][y + 1] == TileState.FLAGGED) count++;
+            instrum(461,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x));
+			if (x > 0){instrum(461,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));if (stateArray[x - 1][y + 1] == TileState.FLAGGED){count++;instrum(459,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}}
+                                instrum(461,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));
+								if (stateArray[x    ][y + 1] == TileState.FLAGGED){count++;instrum(460,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}
+            instrum(462,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.width",width));
+			if (x < width - 1){instrum(462,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.stateArray",stateArray),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.y",y));if (stateArray[x + 1][y + 1] == TileState.FLAGGED){count++;instrum(460,"PostFix",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));}}
         }
 
-        return count;
+        instrum(464,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.countSurroundingFlags.count",count));
+		return count;
     }
 
     /**
@@ -443,21 +475,31 @@ public class Minefield
         int width = getWidth();
         int height = getHeight();
 
-        if (y > 0)
+        instrum(479,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));
+		if (y > 0)
         {
-            if (x > 0)          processor.process(x - 1, y - 1);
+            instrum(482,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x));
+			if (x > 0){processor.process(x - 1,y - 1);instrum(481,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));}
                                 processor.process(x    , y - 1);
-            if (x < width - 1)  processor.process(x + 1, y - 1);
+								instrum(482,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));
+            instrum(485,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.width",width));
+			if (x < width - 1){processor.process(x + 1,y - 1);instrum(484,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));}
         }
 
-        if (x > 0)              processor.process(x - 1, y    );
-        if (x < width - 1)      processor.process(x + 1, y    );
+        instrum(488,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x));
+		if (x > 0){processor.process(x - 1,y);instrum(487,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));}
+        instrum(489,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.width",width));
+		if (x < width - 1){processor.process(x + 1,y);instrum(488,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));}
 
-        if (y < height - 1)
+        instrum(491,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.height",height));
+		if (y < height - 1)
         {
-            if (x > 0)          processor.process(x - 1, y + 1);
+            instrum(494,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x));
+			if (x > 0){processor.process(x - 1,y + 1);instrum(493,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));}
                                 processor.process(x    , y + 1);
-            if (x < width - 1)  processor.process(x + 1, y + 1);
+								instrum(494,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));
+            instrum(497,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.width",width));
+			if (x < width - 1){processor.process(x + 1,y + 1);instrum(496,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.processor",processor),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.processSurrounding.y",y));}
         }
     }
 
@@ -474,59 +516,63 @@ public class Minefield
 
         // Write top line
         builder.append('+');
-        for (int x = 0; x < width; x++)
-            builder.append('-');
+		instrum(512,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));
+        for (int x = 0; x < width; x++) {builder.append('-');instrum(514,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));}
         builder.append("+\n");
+		instrum(515,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));
 
         // Write each line of the minefield
         for (int y = 0; y < height; y++)
         {
-            builder.append('|');
+            instrum(519,"for",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.y",y),new Pair<>("uk.ac.york.minesweeper.Minefield.toString.height",height));
+			builder.append('|');
+			instrum(522,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));
 
             for (int x = 0; x < width; x++)
             {
-                char c;
+                instrum(525,"for",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.toString.width",width));
+				char c;
 
-                // Handle each tile state
+                instrum(532,"switch",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.x",x),new Pair<>("uk.ac.york.minesweeper.Minefield.toString.y",y));
+				// Handle each tile state
                 switch (getTileState(x, y))
                 {
                     case COVERED:
-                        c = '#';
+					{c='#';instrum(534,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.c",c));}
                         break;
 
                     case FLAGGED:
-                        c = 'f';
+					{c='f';instrum(537,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.c",c));}
                         break;
 
                     case QUESTION:
-                        c = '?';
+					{c='?';instrum(540,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.c",c));}
                         break;
 
                     default:
                         // Show tile's value
                         int tileValue = getTileValue(x, y);
 
-                        if (tileValue < 0)
-                            c = '!';
-                        else if(tileValue == 0)
-                            c = ' ';
-                        else
-                            c = (char) ('0' + tileValue);
+					{instrum(547,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.tileValue",tileValue));if (tileValue < 0){c='!';instrum(546,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.c",c));} else {instrum(547,"if",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.tileValue",tileValue));if (tileValue == 0){c=' ';instrum(546,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.c",c));} else {c=(char)('0' + tileValue);instrum(547,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.c",c),new Pair<>("uk.ac.york.minesweeper.Minefield.toString.tileValue",tileValue));}}}
                 }
 
                 builder.append(c);
+				instrum(550,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder),new Pair<>("uk.ac.york.minesweeper.Minefield.toString.c",c));
             }
 
             builder.append("|\n");
+			instrum(554,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));
         }
 
         // Write bottom line
         builder.append('+');
-        for (int x = 0; x < width; x++)
-            builder.append('-');
+		instrum(559,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));
+        for (int x = 0; x < width; x++) {builder.append('-');instrum(561,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));}
         builder.append("+\n");
+		instrum(562,"method call",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));
 
-        return builder.toString();
+        instrum(566,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.toString.builder",builder));
+		return builder.toString();
     }
 
     /**

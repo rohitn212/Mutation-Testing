@@ -1,8 +1,5 @@
 package uk.ac.york.minesweeper;
 
-import static uk.ac.york.minesweeper.TemplateClass.instrum;
-import javafx.util.Pair;
-
 /**
  * Event fired when the state of the game changes
  */

@@ -1,5 +1,6 @@
 package uk.ac.york.minesweeper;
 
+import static uk.ac.york.minesweeper.TemplateClass.instrum;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
+import javafx.util.Pair;
 
 /**
  * A component which can display a minefield graphically and handle various events
@@ -81,9 +83,12 @@ public class MinefieldPanel extends JComponent
     {
         this.addMouseListener(new MouseEventListener());
         this.setBackground(COLOUR_BACKGROUND);
+		instrum(85,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.COLOUR_BACKGROUND",COLOUR_BACKGROUND));
         this.setOpaque(true);
         this.setFont(FONT);
+		instrum(88,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.FONT",FONT));
         this.setMinefield(minefield);
+		instrum(90,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.MinefieldPanel.minefield",minefield));
     }
 
     /**
@@ -93,8 +98,8 @@ public class MinefieldPanel extends JComponent
      */
     public void addStateChangeListener(MinefieldStateChangeListener listener)
     {
-        if (!listeners.contains(listener))
-            listeners.add(listener);
+        instrum(102,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.listeners",listeners),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.addStateChangeListener.listener",listener));
+		if (!listeners.contains(listener)){listeners.add(listener);instrum(102,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.listeners",listeners),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.addStateChangeListener.listener",listener));}
     }
 
     /**
@@ -105,6 +110,7 @@ public class MinefieldPanel extends JComponent
     public void removeStateChangeListener(MinefieldStateChangeListener listener)
     {
         listeners.remove(listener);
+		instrum(112,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.listeners",listeners),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.removeStateChangeListener.listener",listener));
     }
 
     /**
@@ -114,8 +120,7 @@ public class MinefieldPanel extends JComponent
     {
         MinefieldStateChangeEvent event = new MinefieldStateChangeEvent(this);
 
-        for (MinefieldStateChangeListener listener : listeners)
-            listener.stateChanged(event);
+        for (MinefieldStateChangeListener listener : listeners) {listener.stateChanged(event);instrum(123,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.fireStateChangeEvent.listener",listener),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.fireStateChangeEvent.event",event));}
     }
 
     /**
@@ -125,7 +130,8 @@ public class MinefieldPanel extends JComponent
      */
     public Minefield getMinefield()
     {
-        return minefield;
+        instrum(134,"return",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield));
+		return minefield;
     }
 
     /**
@@ -135,13 +141,16 @@ public class MinefieldPanel extends JComponent
      */
     public void setMinefield(Minefield newMinefield)
     {
-        if (newMinefield == null)
+        instrum(145,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.setMinefield.newMinefield",newMinefield));
+		if (newMinefield == null)
             throw new IllegalArgumentException("newMinefield cannot be null");
 
         this.minefield = newMinefield;
+		instrum(148,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",this.minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.setMinefield.newMinefield",newMinefield));
 
         // Reset selected tile
         this.selectedTile = null;
+		instrum(152,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",this.selectedTile));
 
         // Update all visuals
         this.setSize(getPreferredSize());
@@ -167,14 +176,15 @@ public class MinefieldPanel extends JComponent
 
         // Draw the character
         g.drawChars(new char[] { c }, 0, 1, drawX, drawY);
+		instrum(178,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawCharacter.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawCharacter.c",c),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawCharacter.drawX",drawX),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawCharacter.drawY",drawY));
     }
 
     /**
      * Draws an image at the given tile location
      *
      * @param g graphics object
-     * @param x x position of top-left of tile
-     * @param y y position of top-left of tile
+     * @param tileX x position of top-left of tile
+     * @param tileY y position of top-left of tile
      * @param img image to draw
      */
     private static void drawImage(Graphics g, int tileX, int tileY, BufferedImage img)
@@ -183,6 +193,7 @@ public class MinefieldPanel extends JComponent
         int yOff = tileY + (TILE_SIZE - img.getHeight()) / 2;
 
         g.drawImage(img, xOff, yOff, null);
+		instrum(195,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawImage.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawImage.img",img),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawImage.xOff",xOff),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.drawImage.yOff",yOff));
     }
 
     @Override
@@ -196,69 +207,77 @@ public class MinefieldPanel extends JComponent
 
         // Make the numbers look a little nicer
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		instrum(209,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g));
 
         // Draw background
         if (isOpaque())
         {
             g.setColor(getBackground());
+			instrum(215,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g));
             g.fillRect(0, 0, getWidth(), getHeight());
+			instrum(217,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g));
         }
 
         // Draw all the tiles
         for (int x = 0; x < minefield.getWidth(); x++)
         {
-            for (int y = 0; y < minefield.getHeight(); y++)
+            instrum(222,"for",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.x",x),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield));
+			for (int y = 0; y < minefield.getHeight(); y++)
             {
-                int graphicsX1 = x * TILE_SIZE;
+                instrum(225,"for",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.y",y),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield));
+				int graphicsX1 = x * TILE_SIZE;
                 int graphicsY1 = y * TILE_SIZE;
 
                 // Draw standard background
                 g.setColor(COLOUR_DARK);
+				instrum(232,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.COLOUR_DARK",COLOUR_DARK));
                 g.drawLine(graphicsX1, graphicsY1, graphicsX1 + TILE_SIZE, graphicsY1);
+				instrum(234,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsX1",graphicsX1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsY1",graphicsY1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE));
                 g.drawLine(graphicsX1, graphicsY1, graphicsX1, graphicsY1 + TILE_SIZE);
+				instrum(236,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsX1",graphicsX1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsY1",graphicsY1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE));
 
-                // Covered or uncovered?
+                instrum(241,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.x",x),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.y",y));
+				// Covered or uncovered?
                 if (minefield.getTileState(x, y) == TileState.UNCOVERED)
                 {
                     // Draw the correct symbol
                     int tileValue = minefield.getTileValue(x, y);
 
-                    if (tileValue < 0)
+                    instrum(247,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.tileValue",tileValue));
+					if (tileValue < 0)
                     {
                         drawImage(g, graphicsX1, graphicsY1, Images.MINE);
-                    }
-                    else if (tileValue > 0)
-                    {
-                        g.setColor(COLOUR_NUMBERS[tileValue]);
-                        drawCharacter(g, graphicsX1, graphicsY1, (char) ('0' + tileValue));
-                    }
+                    }else {instrum(251,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.tileValue",tileValue));if (tileValue > 0){g.setColor(COLOUR_NUMBERS[tileValue]);instrum(252,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.COLOUR_NUMBERS",COLOUR_NUMBERS),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.tileValue",tileValue));drawCharacter(g,graphicsX1,graphicsY1,(char)('0' + tileValue));}}
                 }
                 else
                 {
-                    // Only draw the bevel background if this is NOT the selected tile
+                    instrum(261,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.x",x),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.selectedX",selectedX),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.y",y),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.selectedY",selectedY));
+					// Only draw the bevel background if this is NOT the selected tile
                     if (x != selectedX || y != selectedY)
                     {
                         int bevelX2 = graphicsX1 + TILE_SIZE - BEVEL_WIDTH;
                         int bevelY2 = graphicsY1 + TILE_SIZE - BEVEL_WIDTH;
 
                         g.setColor(COLOUR_LIGHT);
+						instrum(266,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.COLOUR_LIGHT",COLOUR_LIGHT));
                         g.fillRect(graphicsX1, graphicsY1, TILE_SIZE, BEVEL_WIDTH);
+						instrum(268,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsX1",graphicsX1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsY1",graphicsY1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.BEVEL_WIDTH",BEVEL_WIDTH));
                         g.fillRect(graphicsX1, graphicsY1, BEVEL_WIDTH, TILE_SIZE);
+						instrum(270,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsX1",graphicsX1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsY1",graphicsY1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.BEVEL_WIDTH",BEVEL_WIDTH),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE));
                         g.setColor(COLOUR_DARK);
+						instrum(272,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.COLOUR_DARK",COLOUR_DARK));
                         g.fillRect(graphicsX1, bevelY2,    TILE_SIZE, BEVEL_WIDTH);
+						instrum(274,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsX1",graphicsX1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.bevelY2",bevelY2),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.BEVEL_WIDTH",BEVEL_WIDTH));
                         g.fillRect(bevelX2,    graphicsY1, BEVEL_WIDTH, TILE_SIZE);
+						instrum(276,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.bevelX2",bevelX2),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.graphicsY1",graphicsY1),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.BEVEL_WIDTH",BEVEL_WIDTH),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE));
                     }
 
-                    // Draw flag or question mark if needed
+                    instrum(282,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.x",x),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.y",y));
+					// Draw flag or question mark if needed
                     if (minefield.getTileState(x, y) == TileState.FLAGGED)
                     {
                         drawImage(g, graphicsX1, graphicsY1, Images.FLAG);
-                    }
-                    else if (minefield.getTileState(x, y) == TileState.QUESTION)
-                    {
-                        g.setColor(COLOUR_QUESTION);
-                        drawCharacter(g, graphicsX1, graphicsY1, '?');
-                    }
+                    }else {instrum(286,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.x",x),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.y",y));if (minefield.getTileState(x,y) == TileState.QUESTION){g.setColor(COLOUR_QUESTION);instrum(287,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.paintComponent.g",g),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.COLOUR_QUESTION",COLOUR_QUESTION));drawCharacter(g,graphicsX1,graphicsY1,'?');}}
                 }
             }
         }
@@ -267,7 +286,8 @@ public class MinefieldPanel extends JComponent
     @Override
     public Dimension getPreferredSize()
     {
-        return new Dimension(TILE_SIZE * minefield.getWidth(),
+        instrum(300,"return",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield));
+		return new Dimension(TILE_SIZE * minefield.getWidth(),
                              TILE_SIZE * minefield.getHeight());
     }
 
@@ -293,16 +313,19 @@ public class MinefieldPanel extends JComponent
          */
         private Point getTileFromEvent(MouseEvent e)
         {
-            return new Point(e.getX() / TILE_SIZE, e.getY() / TILE_SIZE);
+            instrum(327,"return",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.getTileFromEvent.e",e),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.TILE_SIZE",TILE_SIZE));
+			return new Point(e.getX() / TILE_SIZE, e.getY() / TILE_SIZE);
         }
 
         @Override
         public void mouseExited(MouseEvent e)
         {
-            // Clear selected tile
+            instrum(335,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile));
+			// Clear selected tile
             if (selectedTile != null)
             {
                 selectedTile = null;
+				instrum(337,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile));
                 repaint();
             }
         }
@@ -310,39 +333,27 @@ public class MinefieldPanel extends JComponent
         @Override
         public void mousePressed(MouseEvent e)
         {
-            // Ignore if finished
+            instrum(348,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield));
+			// Ignore if finished
             if (minefield.isFinished())
                 return;
 
             // Get tile position
             Point tile = getTileFromEvent(e);
 
-            // Right or left click?
+            instrum(356,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.e",e));
+			// Right or left click?
             if (SwingUtilities.isLeftMouseButton(e))
             {
-                // Do not select tiles with flags on
+                instrum(360,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.tile",tile));
+				// Do not select tiles with flags on
                 if (minefield.getTileState(tile.x, tile.y) == TileState.FLAGGED)
                     return;
 
                 // Set new selected tile
                 selectedTile = tile;
-            }
-            else if (SwingUtilities.isRightMouseButton(e))
-            {
-                TileState newState;
-
-                // Change flagged state
-                switch(minefield.getTileState(tile.x, tile.y))
-                {
-                    case COVERED:   newState = TileState.FLAGGED;   break;
-                    case FLAGGED:   newState = TileState.QUESTION;  break;
-                    default:        newState = TileState.COVERED;   break;
-
-                    case UNCOVERED: newState = TileState.UNCOVERED; break;
-                }
-
-                minefield.setTileState(tile.x, tile.y, newState);
-            }
+				instrum(364,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.tile",tile));
+            }else {instrum(367,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.e",e));if (SwingUtilities.isRightMouseButton(e)){TileState newState;instrum(372,"switch",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.tile",tile));switch (minefield.getTileState(tile.x,tile.y)){case COVERED:{newState=TileState.FLAGGED;instrum(373,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.newState",newState));}break;case FLAGGED:{newState=TileState.QUESTION;instrum(373,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.newState",newState));}break;default:{newState=TileState.COVERED;instrum(373,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.newState",newState));}break;case UNCOVERED:{newState=TileState.UNCOVERED;instrum(374,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.newState",newState));}break;}minefield.setTileState(tile.x,tile.y,newState);instrum(377,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.tile",tile),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mousePressed.newState",newState));}}
 
             repaint();
         }
@@ -350,31 +361,34 @@ public class MinefieldPanel extends JComponent
         @Override
         public void mouseReleased(MouseEvent e)
         {
-            // Ignore if finished
+            instrum(389,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield));
+			// Ignore if finished
             if (minefield.isFinished())
                 return;
 
-            // Ensure there was a tile selected
+            instrum(394,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile));
+			// Ensure there was a tile selected
             if (selectedTile != null)
             {
-                // Ensure the tile was the same as the one clicked on
+                instrum(398,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mouseReleased.e",e));
+				// Ensure the tile was the same as the one clicked on
                 if (selectedTile.equals(getTileFromEvent(e)))
                 {
                     // Either chord or uncover depending on the number of clicks
                     GameState state = minefield.getGameState();
 
-                    if (e.getClickCount() == 2)
-                        minefield.chord(selectedTile.x, selectedTile.y);
-                    else if (e.getClickCount() == 1)
-                        minefield.uncover(selectedTile.x, selectedTile.y);
+                    instrum(404,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mouseReleased.e",e));
+					if (e.getClickCount() == 2){minefield.chord(selectedTile.x,selectedTile.y);instrum(404,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile));}else {instrum(405,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mouseReleased.e",e));if (e.getClickCount() == 1){minefield.uncover(selectedTile.x,selectedTile.y);instrum(404,"method call",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile));}}
 
-                    // Fire state changed event if needed
+                    instrum(408,"if",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.minefield",minefield),new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.mouseReleased.state",state));
+					// Fire state changed event if needed
                     if (minefield.getGameState() != state)
                         fireStateChangeEvent();
                 }
 
                 // Clear selected tile
                 selectedTile = null;
+				instrum(413,"Assign",new Pair<>("uk.ac.york.minesweeper.MinefieldPanel.selectedTile",selectedTile));
                 repaint();
             }
         }

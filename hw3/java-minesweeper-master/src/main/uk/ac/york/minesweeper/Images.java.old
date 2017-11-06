@@ -1,6 +1,5 @@
 package uk.ac.york.minesweeper;
 
-import static uk.ac.york.minesweeper.TemplateClass.instrum;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
-import javafx.util.Pair;
 
 /**
  * Static class containing the game's images
@@ -42,10 +40,9 @@ public final class Images
     private static BufferedImage loadImageResource(String name)
     {
         // Load image stream
-        try (InputStream imgStream=Images.class.getResourceAsStream(RES_DIRECTORY + name))
+        try (InputStream imgStream = Images.class.getResourceAsStream(RES_DIRECTORY + name))
         {
-            instrum(48,"return",new Pair<>("uk.ac.york.minesweeper.Images.loadImageResource.imgStream",imgStream));
-			// Decompress image
+            // Decompress image
             return ImageIO.read(imgStream);
         }
         catch (IOException e)
