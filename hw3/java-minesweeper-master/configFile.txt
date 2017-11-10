@@ -1,0 +1,28 @@
+MinefieldTest:getHeight;AMC:JSI,uncoverAllMines;AOR:COR:JTI:JTD
+MinesweeperFrameTest:actionPerformed;ASOR
+
+
+
+testFileName.commaSeparatedListOfFunctions;colonSeparatedListOfMutations-inputs
+
+
+------------------------------
+
+Arithmetic Operators:
+1 Arithmetic Operator Replacement ::: - .. Minefield constructor  DONE
+2 Arithmetic Short-Cut Operator Replacement :::  -- or ++ .. actionPerformed DONE
+
+Relational Operators:
+3 Relational Operator Replacement ::: ==, != .. actionPerformed DONE
+
+Conditional Operators:
+4 Conditional Operator Replacement  ::: || .. Minefield constructor DONE
+
+Encapsulation:
+5 Access modifier change ::: private to public .. getHeight DONE
+
+Java-Specific Features:
+6 JTI ::: this keyword insertion .. Minefield constructor DONE
+7 JTD ::: this keyword deletion .. Minefield constructor DONE
+8 JSI ::: static modifier insertion .. getHeight DONE
+ 
