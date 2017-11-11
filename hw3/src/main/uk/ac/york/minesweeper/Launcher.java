@@ -41,6 +41,18 @@ public class Launcher {
         }
     }
 
+    public void mutationJDC(CtClass c) {
+        for (CtConstructor constructor : c.getConstructors()) {
+            if (constructor.isConstructor()) {
+                try {
+                    c.removeConstructor(constructor);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public void mutationJSD(CtClass c) {
         for (CtField field : c.getFields()) {
             int mod = field.getModifiers();
