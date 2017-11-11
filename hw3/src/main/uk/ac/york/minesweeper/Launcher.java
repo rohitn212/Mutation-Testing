@@ -1,10 +1,6 @@
 package uk.ac.york.minesweeper;
 
-import com.sun.org.apache.bcel.internal.util.ClassPath;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import javassist.*;
-import javassist.bytecode.AccessFlag;
-import javassist.bytecode.ClassFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,62 +16,75 @@ public class Launcher {
         this.configFile = configFile;
     }
 
-    public void parseConfigFile() {
-
-    }
-
-    public void some(ClassPool cp) {
-        CtClass c = null;
-        try {
-            c = cp.get(this.className);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // AMC
+    public void mutationAMC(CtClass c) {
         for (CtField field : c.getFields()) {
             int mod = field.getModifiers();
             if (mod == Modifier.PRIVATE) field.setModifiers(Modifier.PUBLIC);
             else field.setModifiers(Modifier.PRIVATE);
         }
-
         for (CtMethod method : c.getMethods()) {
             int mod = method.getModifiers();
             if (mod == Modifier.PRIVATE) method.setModifiers(Modifier.PUBLIC);
             else method.setModifiers(Modifier.PRIVATE);
         }
+    }
 
-        // JSD
+    public void mutationIOD(CtClass c) {
+        for (CtMethod method: c.getMethods()) {
+            if (c != method.getDeclaringClass()) {
+                try {
+                    c.removeMethod(method);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void mutationJSD(CtClass c) {
         for (CtField field : c.getFields()) {
             int mod = field.getModifiers();
             if (mod == Modifier.STATIC) field.setModifiers(mod ^ Modifier.STATIC);
         }
-
         for (CtMethod method : c.getMethods()) {
             int mod = method.getModifiers();
             if (mod == Modifier.STATIC) method.setModifiers(mod ^ Modifier.STATIC);
         }
+    }
 
-        // JSI
+    public void mutationJSI(CtClass c) {
         for (CtField field : c.getFields()) {
             int mod = field.getModifiers();
             if (mod != Modifier.STATIC) field.setModifiers(Modifier.STATIC);
         }
-
         for (CtMethod method : c.getMethods()) {
             int mod = method.getModifiers();
             if (mod != Modifier.STATIC) method.setModifiers(Modifier.STATIC);
         }
+    }
 
-        // AOR
-        for (CtMethod method : c.getMethods()) {
-            
-        }
+    public void parseConfigFile() {
 
     }
 
+    public void writeToFile(String newFileName, CtClass c) {
+        try {
+            c.writeFile("src/" + newFileName);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         ClassPool cp = ClassPool.getDefault();
+        CtClass c = null;
+        Launcher l = new Launcher("Minefield", new File("configFile.txt"));
+        try {
+            c = cp.get(l.className);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
