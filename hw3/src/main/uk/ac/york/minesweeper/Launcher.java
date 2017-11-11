@@ -1,16 +1,38 @@
 package uk.ac.york.minesweeper;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.NotFoundException;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Launcher {
-    public static void main(String[] args) throws IOException {
-        readConfig("configFile.txt");
+    public String className;
+    public File configFile;
+    public ArrayList<String> configList = new ArrayList<String>();
+
+    public Launcher(String className, File configFile) {
+        this.className = className;
+        this.configFile = configFile;
     }
 
-    private static void readConfig(String filename) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filename));
+    public void parseConfigFile() {
+
+    }
+
+    public void someShit(ClassPool cp) {
+        CtClass c = null;
+        try {
+            c = cp.get(this.className);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+        ClassPool cp = new ClassPool();
     }
 }
