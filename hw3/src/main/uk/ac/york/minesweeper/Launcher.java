@@ -1,10 +1,13 @@
 package uk.ac.york.minesweeper;
 
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.NotFoundException;
+import com.sun.org.apache.bcel.internal.util.ClassPath;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import javassist.*;
+import javassist.bytecode.AccessFlag;
+import javassist.bytecode.ClassFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Launcher {
@@ -21,7 +24,7 @@ public class Launcher {
 
     }
 
-    public void someShit(ClassPool cp) {
+    public void some(ClassPool cp) {
         CtClass c = null;
         try {
             c = cp.get(this.className);
@@ -29,10 +32,50 @@ public class Launcher {
             e.printStackTrace();
         }
 
+        // AMC
+        for (CtField field : c.getFields()) {
+            int mod = field.getModifiers();
+            if (mod == Modifier.PRIVATE) field.setModifiers(Modifier.PUBLIC);
+            else field.setModifiers(Modifier.PRIVATE);
+        }
+
+        for (CtMethod method : c.getMethods()) {
+            int mod = method.getModifiers();
+            if (mod == Modifier.PRIVATE) method.setModifiers(Modifier.PUBLIC);
+            else method.setModifiers(Modifier.PRIVATE);
+        }
+
+        // JSD
+        for (CtField field : c.getFields()) {
+            int mod = field.getModifiers();
+            if (mod == Modifier.STATIC) field.setModifiers(mod ^ Modifier.STATIC);
+        }
+
+        for (CtMethod method : c.getMethods()) {
+            int mod = method.getModifiers();
+            if (mod == Modifier.STATIC) method.setModifiers(mod ^ Modifier.STATIC);
+        }
+
+        // JSI
+        for (CtField field : c.getFields()) {
+            int mod = field.getModifiers();
+            if (mod != Modifier.STATIC) field.setModifiers(Modifier.STATIC);
+        }
+
+        for (CtMethod method : c.getMethods()) {
+            int mod = method.getModifiers();
+            if (mod != Modifier.STATIC) method.setModifiers(Modifier.STATIC);
+        }
+
+        // AOR
+        for (CtMethod method : c.getMethods()) {
+            
+        }
+
     }
 
 
     public static void main(String[] args) {
-        ClassPool cp = new ClassPool();
+        ClassPool cp = ClassPool.getDefault();
     }
 }
