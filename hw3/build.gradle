@@ -1,0 +1,53 @@
+apply plugin: 'maven'
+apply plugin:'application'
+apply plugin: 'jacoco'
+
+group = 'uk.ac.york.minesweeper'
+version = '1.0.0-SNAPSHOT'
+
+description = """wordcloud"""
+
+sourceSets.main.java.srcDirs = ['src/main']
+sourceSets.test.java.srcDirs = ['src/test']
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    maven { url "http://repo.maven.apache.org/maven2" }
+}
+/*
+configurations{
+    emma
+}
+*/
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.enabled true
+    }
+}
+
+dependencies {
+    compile group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.10.0'
+    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+}
+
+mainClassName = "uk.ac.york.minesweeper.MinesweeperFrame"
+
+test {
+    testLogging {
+        showStandardStreams = true
+        events 'passed', 'failed'
+    }
+}
+
+test.dependsOn 'clean'
+classes.mustRunAfter 'clean'
