@@ -10,22 +10,22 @@ JSI.NONE
 
 
 Arithmetic Operators:
-1 Arithmetic Operator Replacement ::: - .. Minefield constructor  DONE
-2 Arithmetic Short-Cut Operator Replacement :::  -- or ++ .. actionPerformed DONE
+1 Arithmetic Operator Replacement ::: - .. Minefield constructor  DONE 42
+2 Arithmetic Short-Cut Operator Replacement :::  -- or ++ .. actionPerformed DONE 149
 
 Relational Operators:
-3 Relational Operator Replacement ::: ==, != .. Minefield constructor DONE
+3 Relational Operator Replacement ::: ==, != .. Minefield constructor DONE 50
 
 Conditional Operators:
-4 Conditional Operator Replacement  ::: || .. Minefield constructor DONE
+4 Conditional Operator Replacement  ::: || .. Minefield constructor DONE 46
 
 Encapsulation:
-5 Access modifier change ::: private to public .. getHeight DONE
+5 Access modifier change ::: private to public .. getHeight DONE 89 in method, 17 variable
 
 Java-Specific Features:
-6 JTI ::: this keyword insertion .. Minefield constructor DONE
-7 JTD ::: this keyword deletion .. Minefield constructor DONE
-8 JSI ::: static modifier insertion .. getHeight DONE
+6 JTI ::: this keyword insertion .. Minefield constructor DONE 54
+7 JTD ::: this keyword deletion .. Minefield constructor DONE 56
+8 JSI ::: static modifier insertion .. getHeight DONE  89 in method, 17 variable
  
 
 
