@@ -2,8 +2,51 @@ package uk.ac.york.minesweeper;
 
 import javafx.util.Pair;
 
-public class TemplateClass {
-    public static void instrum(int line, String type, Pair<String, Object>...args) {
+import java.util.ArrayList;
+import java.util.Collections;
 
+public class TemplateClass {
+    static class Instrument {
+        private int line;
+        private String type;
+        private ArrayList<Pair<String, Object>> pair;
+
+        Instrument(int line, String type, ArrayList<Pair<String, Object>> pair) {
+            this.setLine(line);
+            this.setType(type);
+            this.setPair(pair);
+        }
+
+        public int getLine() {
+            return line;
+        }
+
+        void setLine(int line) {
+            this.line = line;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        void setType(String type) {
+            this.type = type;
+        }
+
+        public ArrayList<Pair<String, Object>> getPair() {
+            return pair;
+        }
+
+        void setPair(ArrayList<Pair<String, Object>> pair) {
+            this.pair = pair;
+        }
+    }
+    public static ArrayList<Instrument> instrumList = new ArrayList<>();
+
+    public static void instrum(int line, String type, Pair<String, Object>...args) {
+        ArrayList<Pair<String, Object>> pairList = new ArrayList<>();
+        Collections.addAll(pairList, args);
+        Instrument i = new Instrument(line, type, pairList);
+        instrumList.add(i);
     }
 }

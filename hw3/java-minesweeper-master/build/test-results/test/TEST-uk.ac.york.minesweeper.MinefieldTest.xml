@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="uk.ac.york.minesweeper.MinefieldTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-10-07T01:00:32" hostname="Harshas-MBP-2" time="0.013">
-  <properties/>
-  <testcase name="uncover" classname="uk.ac.york.minesweeper.MinefieldTest" time="0.013"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
