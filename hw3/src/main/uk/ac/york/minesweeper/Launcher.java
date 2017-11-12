@@ -56,22 +56,22 @@ public class Launcher {
     public void mutationJSD(CtClass c) {
         for (CtField field : c.getFields()) {
             int mod = field.getModifiers();
-            if (mod == Modifier.STATIC) field.setModifiers(mod ^ Modifier.STATIC);
+            field.setModifiers(mod & ~Modifier.STATIC);
         }
         for (CtMethod method : c.getMethods()) {
             int mod = method.getModifiers();
-            if (mod == Modifier.STATIC) method.setModifiers(mod ^ Modifier.STATIC);
+            method.setModifiers(mod & ~Modifier.STATIC);
         }
     }
 
     public void mutationJSI(CtClass c) {
         for (CtField field : c.getFields()) {
             int mod = field.getModifiers();
-            if (mod != Modifier.STATIC) field.setModifiers(Modifier.STATIC);
+            if (mod != (mod | Modifier.STATIC)) field.setModifiers(Modifier.STATIC);
         }
         for (CtMethod method : c.getMethods()) {
             int mod = method.getModifiers();
-            if (mod != Modifier.STATIC) method.setModifiers(Modifier.STATIC);
+            if (mod != (mod | Modifier.STATIC)) method.setModifiers(Modifier.STATIC);
         }
     }
 
@@ -92,11 +92,14 @@ public class Launcher {
     public static void main(String[] args) {
         ClassPool cp = ClassPool.getDefault();
         CtClass c = null;
-        Launcher l = new Launcher("Minefield", new File("configFile.txt"));
+        Launcher l = new Launcher(TemplateClass.class.getName(), new File("configFile.txt"));
         try {
             c = cp.get(l.className);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
+
+        l.mutationJSI(c);
+        l.writeToFile("newclasslol", c);
     }
 }
