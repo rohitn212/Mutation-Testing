@@ -53,6 +53,12 @@ public class TemplateClass {
     }
     public static ArrayList<Instrument> instrumList = new ArrayList<>();
 
+    public static ArrayList<Instrument> copyInstrumList() {
+        ArrayList<Instrument> newInstrumList = new ArrayList<>();
+        for (Instrument instr: instrumList) newInstrumList.add(instr);
+        return newInstrumList;
+    }
+
     public static void instrum(int line, String type, Pair<String, Object>...args) {
         ArrayList<Pair<String, Object>> pairList = new ArrayList<>();
         Collections.addAll(pairList, args);

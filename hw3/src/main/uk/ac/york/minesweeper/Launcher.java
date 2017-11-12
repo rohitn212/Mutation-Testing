@@ -1,6 +1,5 @@
 package uk.ac.york.minesweeper;
 
-import javafx.geometry.Pos;
 import javassist.*;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
@@ -53,7 +52,8 @@ public class Launcher {
         if (oldInstrumList == null || newInstrumList == null) throw new NullPointerException();
         int count = 0;
         while (count < oldInstrumList.size() && count < newInstrumList.size()) {
-            if (oldInstrumList.get(count) != newInstrumList.get(count)) {
+            System.out.println("zz");
+            if (!oldInstrumList.get(count).equals(newInstrumList.get(count))) {
                 System.out.println("Change detected");
                 System.out.println("premutation values: \n");
                 oldInstrumList.get(count).printInstrument();
@@ -170,16 +170,13 @@ public class Launcher {
                 c = cp.get(mutationArr[i].className);
                 junit.run(Request.method(Class.forName(PreMutationTests.class.getName()),
                         mutationArr[i].mutationTestName));
-                ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.instrumList;
-
+                ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.copyInstrumList();
                 TemplateClass.instrumList.clear();
                 l.callMutation(mutationArr[i].mutation, c);
                 l.writeToClass(mutationArr[i].mutation + "Mutation", c);
-
                 junit.run(Request.method(Class.forName(PostMutationTests.class.getName()),
                         mutationArr[i].mutationTestName));
-                ArrayList<TemplateClass.Instrument> newInstrumList = TemplateClass.instrumList;
-                l.compareInstrumLists(oldInstrumList, newInstrumList);
+                l.compareInstrumLists(oldInstrumList, TemplateClass.instrumList);
                 threadArr[i].join();
             } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
                 e.printStackTrace();
