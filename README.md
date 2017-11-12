@@ -82,16 +82,12 @@ Proceedure:
 
 Step 1: Parse the config file
 
-Step : Make a an array of n threads where n is the number of mutations 
+Step 2: Make a an array of n threads where n is the number of mutations 
 
-Step : Run the pre mutation tests
+Step 3: Run the pre mutation tests
 
-Step : Mutate the code
+Step 4: Mutate the code
 
-Step : 
+Step 5: Run the post mutation tests
 
--------------------------------------
-
-
-
-
+Step 6: Compare the instrum list for pre and post tests
