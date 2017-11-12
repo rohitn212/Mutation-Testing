@@ -26,28 +26,28 @@ The inital repository is: https://github.com/jcowgill/java-minesweeper
 
 Examples of mutations we used:
 
-1. Static Modifier Insertion(JSI) - adds the static modifier to change instance variables to class variables. Opposite of JSD 
+1:Static Modifier Insertion(JSI) - adds the static modifier to change instance variables to class variables. Opposite of JSD 
 
 JSI Mutation Example: 
 ![Scheme](/Images/JSI.png)
 JSI Code:
 ![Scheme](/Images/JSIcode.png)
 
-2. Static Modifier Deletion(JSD) - removes the static modifier to change class variables to instance variables. Opposite of JSI
+2:Static Modifier Deletion(JSD) - removes the static modifier to change class variables to instance variables. Opposite of JSI
 
 JSD Mutation Example:
 ![Scheme](/Images/JSD.png)
 JSD Code:
 ![Scheme](/Images/JSDcode.png)
 
-3. Access Modifier Change(AMC) - changes access level for instance variables and methods to other access variables.
+3:Access Modifier Change(AMC) - changes access level for instance variables and methods to other access variables.
 
 AMC Mutation Example:
 ![Scheme](/Images/AMC.png)
 AMC Code:
 ![Scheme](/Images/AMCcode.png)
 
-4. Overloading Method Deletion(OMD) - deletes overloading method declarations, one at a time in turn.
+4:Overloading Method Deletion(OMD) - deletes overloading method declarations, one at a time in turn.
 
 OMD Mutation Example:
 ![Scheme](/Images/OMD.png)
@@ -69,6 +69,9 @@ Step 3:
 Configuration File Setup:
 
 The configuration file is set up in the following manner:
+
+mutation,methodNameinTestFile,classToTest
+![Scheme](/Images/configFile.png)
 
 -------------------------------------
 
