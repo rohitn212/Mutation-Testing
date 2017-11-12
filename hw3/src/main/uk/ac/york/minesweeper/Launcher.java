@@ -25,7 +25,7 @@ public class Launcher {
         }
     }
 
-    public void callMutation(String mutationName, CtClass c) {
+    public void callMutation(String mutationName, CtClass c) throws ClassNotFoundException {
         switch(mutationName) {
             case "AMC":
                 this.mutationAMC(c);
