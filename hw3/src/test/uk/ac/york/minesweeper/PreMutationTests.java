@@ -73,4 +73,11 @@ public class PreMutationTests {
         MinefieldPane mp = new MinefieldPane(10,10,1);
         assertEquals(mp.getWidth(), 4);
     }
+
+    @Test
+    public void OMRTest() {
+        Minefield m = new Minefield(10, 10, 1);
+        m.setUncoverMinesAtEnd(true);
+        assertEquals(m.isUncoveringMinesAtEnd(), true);
+    }
 }
