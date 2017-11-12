@@ -52,12 +52,11 @@ public class Launcher {
         if (oldInstrumList == null || newInstrumList == null) throw new NullPointerException();
         int count = 0;
         while (count < oldInstrumList.size() && count < newInstrumList.size()) {
-            System.out.println("zz");
             if (!oldInstrumList.get(count).equals(newInstrumList.get(count))) {
-                System.out.println("Change detected");
-                System.out.println("premutation values: \n");
+                System.out.println("\nChange detected");
+                System.out.println("premutation values: ");
                 oldInstrumList.get(count).printInstrument();
-                System.out.println("postmutation values: \n");
+                System.out.println("\npostmutation values: ");
                 newInstrumList.get(count).printInstrument();
             }
             count++;

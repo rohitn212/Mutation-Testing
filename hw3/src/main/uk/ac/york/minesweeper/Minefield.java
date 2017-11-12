@@ -67,6 +67,7 @@ public class Minefield
 		instrum(66,"Assign",new Pair<>("uk.ac.york.minesweeper.Minefield.valuesArray",this.valuesArray),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.width",width),new Pair<>("uk.ac.york.minesweeper.Minefield.Minefield.height",height));
     }
 
+
     /**
      * Gets the width of the minefield in tiles
      *
@@ -109,6 +110,11 @@ public class Minefield
     {
         instrum(111,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverMinesAtEnd",uncoverMinesAtEnd));
 		return uncoverMinesAtEnd;
+    }
+
+    public boolean isUncoverMinesAtEnd(boolean flag) {
+        instrum(113,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverMinesAtEnd",uncoverMinesAtEnd));
+        return uncoverMinesAtEnd;
     }
 
     /**
