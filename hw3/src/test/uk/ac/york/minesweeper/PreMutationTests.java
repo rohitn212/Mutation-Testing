@@ -67,4 +67,10 @@ public class PreMutationTests {
         MinefieldStateChangeEvent mce = new MinefieldStateChangeEvent(new Object());
         assertEquals(mce.serialVersionID.getClass().getName(), "java.lang.String");
     }
+
+    @Test
+    public void IORTest() {
+        MinefieldPane mp = new MinefieldPane(10,10,1);
+        assertEquals(mp.getWidth(), 4);
+    }
 }
