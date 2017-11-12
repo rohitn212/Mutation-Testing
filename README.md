@@ -90,4 +90,4 @@ Step 4: Mutate the code
 
 Step 5: Run the post mutation tests
 
-Step 6: Compare the instrum list for pre and post tests
+Step 6: Compare the instrum list for pre mutation and post mutation tests
