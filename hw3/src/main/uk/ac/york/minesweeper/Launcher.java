@@ -22,19 +22,15 @@ public class Launcher {
         }
     }
 
+    // tested
     public void mutationAMC(CtClass c) {
-        for (CtField field : c.getFields()) {
-            int mod = field.getModifiers();
-            if (mod == Modifier.PRIVATE) field.setModifiers(Modifier.PUBLIC);
-            else field.setModifiers(Modifier.PRIVATE);
-        }
-        for (CtMethod method : c.getMethods()) {
-            int mod = method.getModifiers();
-            if (mod == Modifier.PRIVATE) method.setModifiers(Modifier.PUBLIC);
-            else method.setModifiers(Modifier.PRIVATE);
-        }
+        for (CtField field : c.getFields())
+            field.setModifiers(Modifier.setPrivate(field.getModifiers()));
+        for (CtMethod method : c.getMethods())
+            method.setModifiers(Modifier.setPrivate(method.getModifiers()));
     }
 
+    // tested
     public void mutationIOD(CtClass c) {
         for (CtMethod method : c.getMethods()) {
             if (c != method.getDeclaringClass()) {
@@ -73,26 +69,20 @@ public class Launcher {
         }
     }
 
+    // tested
     public void mutationJSD(CtClass c) {
-        for (CtField field : c.getFields()) {
-            int mod = field.getModifiers();
-            field.setModifiers(mod & ~Modifier.STATIC);
-        }
-        for (CtMethod method : c.getMethods()) {
-            int mod = method.getModifiers();
-            method.setModifiers(mod & ~Modifier.STATIC);
-        }
+        for (CtField field : c.getFields())
+            field.setModifiers(field.getModifiers() & ~Modifier.STATIC);
+        for (CtMethod method : c.getMethods())
+            method.setModifiers(method.getModifiers() & ~Modifier.STATIC);
     }
 
+    // tested
     public void mutationJSI(CtClass c) {
-        for (CtField field : c.getFields()) {
-            int mod = field.getModifiers();
-            if (mod != (mod | Modifier.STATIC)) field.setModifiers(Modifier.STATIC);
-        }
-        for (CtMethod method : c.getMethods()) {
-            int mod = method.getModifiers();
-            if (mod != (mod | Modifier.STATIC)) method.setModifiers(Modifier.STATIC);
-        }
+        for (CtField field : c.getFields())
+            field.setModifiers(field.getModifiers() | Modifier.STATIC);
+        for (CtMethod method : c.getMethods())
+            method.setModifiers(method.getModifiers() | Modifier.STATIC);
     }
 
     public void mutationOMD(CtClass c) {
@@ -125,7 +115,7 @@ public class Launcher {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CannotCompileException {
         ClassPool cp = ClassPool.getDefault();
         CtClass c = null;
         Launcher l = new Launcher();

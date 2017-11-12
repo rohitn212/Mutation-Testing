@@ -36,7 +36,7 @@ jacocoTestReport {
 
 dependencies {
     compile group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.10.0'
-    compile group: 'javassist', name: 'javassist', version: '3.12.1.GA'
+    compile group: 'org.javassist', name: 'javassist', version: '3.22.0-GA'
     testCompile 'junit:junit:4.12'
     compile 'junit:junit:4.12'
 }
