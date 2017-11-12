@@ -10,7 +10,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Launcher {
-    public final int noOfMutations = 7;
+    public final int noOfMutations = 8;
 
     public static class MutationInfo {
         public String mutation = null;
