@@ -104,4 +104,20 @@ public class PostMutationTests {
         }
     }
 
+
+    @Test
+    public void PMDTest() {
+        try {
+            Class c = Class.forName("OMDMutation");
+            Object o = c.getDeclaredConstructor(Minefield.class)
+                    .newInstance(new Minefield(1, 2, 3));
+            Field f = c.getDeclaredField("serialVersionID");
+            assertEquals(f.getName(), "java.lang.String");
+        } catch (ClassNotFoundException | InvocationTargetException |
+                InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            assertEquals(false, true);
+        } catch (NoSuchFieldException e) {
+            assertEquals(false, true);
+        }
+    }
 }
