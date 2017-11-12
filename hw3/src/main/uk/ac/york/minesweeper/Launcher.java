@@ -5,8 +5,6 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -173,12 +171,8 @@ public class Launcher {
             try {
                 junit.run(Request.method(Class.forName("PreMutationTest"),
                         mutationArr[i].mutationTestName));
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            l.callMutation(mutationArr[i].mutation, c);
-            l.writeToClass(mutationArr[i].mutation + "mutation", c);
-            try {
+                l.callMutation(mutationArr[i].mutation, c);
+                l.writeToClass(mutationArr[i].mutation + "mutation", c);
                 junit.run(Request.method(Class.forName("PostMutationTest"),
                         mutationArr[i].mutationTestName));
             } catch (ClassNotFoundException e) {
