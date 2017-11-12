@@ -34,7 +34,7 @@ public class MinefieldPanel extends JComponent
     private static final int FONT_VOFFSET = 24;
 
     /** The font to draw numbers with */
-    private static final Font FONT = new Font(Font.MONOSPACED, Font.BOLD, 24);
+    public static final Font FONT = new Font(Font.MONOSPACED, Font.BOLD, 24);
 
 
     /** Default background colour */

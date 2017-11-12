@@ -20,11 +20,10 @@ public class PreMutationTests {
 
     @Test
     public void JSDTest() {
-        Minefield m1 = new Minefield(10,10,1);
-        Minefield m2 = new Minefield(20,20,2);
-        m1.tilesLeft = 1;
-        m2.tilesLeft = 2;
-        assertEquals(m1.tilesLeft, m2.tilesLeft);
+        Minefield m = new Minefield(10,10,1);
+        MinefieldPanel mp1 = new MinefieldPanel(m);
+        MinefieldPanel mp2 = new MinefieldPanel(m);
+        assertEquals(mp1.FONT, mp2.FONT);
     }
 
     @Test
