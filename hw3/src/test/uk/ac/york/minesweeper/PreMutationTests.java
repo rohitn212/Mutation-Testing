@@ -34,11 +34,13 @@ public class PreMutationTests {
 
     @Test
     public void AMCTest() {
-
+        Minefield m1 = new Minefield(10,10,1);
+        m1.tilesLeft = 1;
+        assertTrue(m1.tilesLeft == 1);
     }
 
     @Test
     public void IPCTest() {
-
+        
     }
 }
