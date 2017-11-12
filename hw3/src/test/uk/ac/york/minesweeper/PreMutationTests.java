@@ -55,4 +55,10 @@ public class PreMutationTests {
         assertTrue(m1.tilesLeft == 1);
     }
 
+    @Test
+    public void OMDTest() {
+        Minefield m = new Minefield(10, 10, 1);
+        m.setUncoverMinesAtEnd(true);
+        assertEquals(m.isUncoveringMinesAtEnd(), true);
+    }
 }

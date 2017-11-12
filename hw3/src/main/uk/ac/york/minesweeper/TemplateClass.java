@@ -65,5 +65,4 @@ public class TemplateClass {
         Instrument i = new Instrument(line, type, pairList);
         instrumList.add(i);
     }
-
 }
