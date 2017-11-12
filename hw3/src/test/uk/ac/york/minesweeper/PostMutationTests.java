@@ -11,7 +11,7 @@ public class PostMutationTests {
         Object o = null;
         try {
             c = Class.forName("uk.ac.york.minesweeper.JSIMutation");
-            o = c.getDeclaredConstructor(new Class[]{int.class, int.class, int.class})
+            o = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
@@ -26,7 +26,7 @@ public class PostMutationTests {
         Object o = null;
         try {
             c = Class.forName("uk.ac.york.minesweeper.JSDMutation");
-            o = c.getDeclaredConstructor(new Class[]{int.class, int.class, int.class})
+            o = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
@@ -40,8 +40,8 @@ public class PostMutationTests {
         Object o = null;
         try {
             c = Class.forName("uk.ac.york.minesweeper.JDCMutation");
-            o = c.getDeclaredConstructor(new Class[]{int.class, int.class, int.class})
-                    .newInstance(new Object[]{1, 2, 3});
+            o = c.getDeclaredConstructor(Minefield.class)
+                    .newInstance(new Object[]{new Minefield(1, 2, 3)});
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class PostMutationTests {
         Object o = null;
         try {
             c = Class.forName("uk.ac.york.minesweeper.IODMutation");
-            o = c.getDeclaredConstructor(new Class[]{int.class, int.class, int.class})
+            o = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
@@ -68,7 +68,7 @@ public class PostMutationTests {
         Object o = null;
         try {
             c = Class.forName("uk.ac.york.minesweeper.AMCMutation");
-            o = c.getDeclaredConstructor(new Class[]{int.class, int.class, int.class})
+            o = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
@@ -82,8 +82,8 @@ public class PostMutationTests {
         Object o = null;
         try {
             c = Class.forName("uk.ac.york.minesweeper.IPCMutation");
-            o = c.getDeclaredConstructor(new Class[]{int.class, int.class, int.class})
-                    .newInstance(new Object[]{1, 2, 3});
+            o = c.getDeclaredConstructor(Object.class)
+                    .newInstance(new Object[]{"jaja"});
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
