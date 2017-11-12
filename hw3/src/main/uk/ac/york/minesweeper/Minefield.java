@@ -11,7 +11,7 @@ import javafx.util.Pair;
 public class Minefield
 {
     // Array containing tile values (-1 = mine)
-    private final byte[][] valuesArray;
+    public final byte[][] valuesArray;
 
     // Array containing tile states
     private final TileState[][] stateArray;
@@ -20,7 +20,7 @@ public class Minefield
     private final int mines;
 
     // Number of extra tiles which need to uncovered to win
-    private int tilesLeft;
+    public int tilesLeft;
 
     // If true, uncovers mines when the game finishes
     private boolean uncoverMinesAtEnd = true;
