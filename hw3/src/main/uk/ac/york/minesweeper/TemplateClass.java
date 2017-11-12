@@ -65,4 +65,22 @@ public class TemplateClass {
         Instrument i = new Instrument(line, type, pairList);
         instrumList.add(i);
     }
+
+    public boolean compareInstrum(ArrayList<Instrument> a) {
+        if (a.size() != instrumList.size()) return false;
+        else {
+            for (int i=0; i<a.size(); i++) {
+                if (a.get(i).line == instrumList.get(i).line
+                        && a.get(i).type.equals(instrumList.get(i).type)) {
+                    if (a.get(i).pair.size() != instrumList.get(i).pair.size()) return false;
+                    else {
+                        for (int j=0; j<a.get(i).pair.size(); j++) {
+                            if (!a.get(i).pair.get(j).equals(instrumList.get(i).pair.get(j))) return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
