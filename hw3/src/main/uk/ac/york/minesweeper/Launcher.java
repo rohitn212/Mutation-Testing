@@ -2,8 +2,10 @@ package uk.ac.york.minesweeper;
 
 import javassist.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Launcher {
 
@@ -107,6 +109,7 @@ public class Launcher {
             }
         }
     }
+
 
     public static MutationInfo[] parseConfigFile(File configFile) {
         // todo
