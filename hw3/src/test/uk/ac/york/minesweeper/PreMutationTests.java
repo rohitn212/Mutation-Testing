@@ -2,8 +2,7 @@ package uk.ac.york.minesweeper;
 
 import org.junit.Test;
 
-public class MutationTest {
-
+public class PreMutationTests {
     @Test
     public void JSITest() {
 

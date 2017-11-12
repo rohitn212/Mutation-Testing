@@ -121,12 +121,11 @@ public class Launcher {
         return mutationArr;
     }
 
-    public void writeToFile(String newFileName, CtClass c) {
+    public void writeToClass(String newFileName, CtClass c) {
         try {
-            c.writeFile("src/" + newFileName);
+            c.setName(newFileName);
+            c.toClass();
         } catch (CannotCompileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -146,7 +145,13 @@ public class Launcher {
                 e.printStackTrace();
             }
             try {
-                junit.run(Request.method(Class.forName("MutationTest"),
+                junit.run(Request.method(Class.forName("PreMutationTest"),
+                        mutationArr[i].mutationTestName));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                junit.run(Request.method(Class.forName("PostMutationTest"),
                         mutationArr[i].mutationTestName));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();

@@ -1,6 +1,6 @@
-JSI,JSITest,MinefieldPanel
-JSD,JSDTest,MinefieldPanel
-JDC,JDCTest,MinefieldPanel
-IOD,IODTest,MinefieldPanel
-AMC,AMCTest,MinefieldPanel
-IPC,IPCTest,MinefieldStateChangeEvent
+mutationJSI,JSITest,MinefieldPanel
+mutationJSD,JSDTest,MinefieldPanel
+mutationJDC,JDCTest,MinefieldPanel
+mutationIOD,IODTest,MinefieldPanel
+mutationAMC,AMCTest,MinefieldPanel
+mutationIPC,IPCTest,MinefieldStateChangeEvent

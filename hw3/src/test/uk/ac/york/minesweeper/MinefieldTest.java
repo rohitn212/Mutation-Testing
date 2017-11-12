@@ -4,9 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by kobebryant1624 on 14/09/17.
- */
+
 public class MinefieldTest {
 
     @Test
@@ -81,7 +79,6 @@ public class MinefieldTest {
         assertEquals(mf.getMines(), 8);
         System.out.println("Testcase Passed");
     }
-
 
     @Test
     public void uncoverAllMines() throws Exception {
