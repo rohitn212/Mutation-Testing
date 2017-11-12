@@ -2,18 +2,27 @@ package uk.ac.york.minesweeper;
 
 import org.junit.Test;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+
+import static org.junit.Assert.*;
 
 public class PostMutationTests {
     @Test
     public void JSITest() {
         try {
             Class c = Class.forName("uk.ac.york.minesweeper.JSIMutation");
-            Object o = c.getDeclaredConstructor(int.class, int.class, int.class)
+            Object o1 = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
+            Object o2 = c.getDeclaredConstructor(int.class, int.class, int.class)
+                    .newInstance(new Object[]{1, 2, 3});
+            Field f = c.getDeclaredField("tilesLeft");
+            assertNotEquals(f.getInt(o1), f.getInt(o2));
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            e.printStackTrace();
+            assertEquals(false, true);
+        } catch (NoSuchFieldException e) {
+            assertEquals(false, true);
         }
 
     }
@@ -24,8 +33,12 @@ public class PostMutationTests {
             Class c = Class.forName("uk.ac.york.minesweeper.JSDMutation");
             Object o = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
+            Field f = c.getDeclaredField("tilesLeft");
+            f.setInt(o, 1);
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
     }
