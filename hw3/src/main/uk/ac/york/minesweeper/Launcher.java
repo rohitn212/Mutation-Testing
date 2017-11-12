@@ -75,6 +75,21 @@ public class Launcher {
         }
     }
 
+    public void mutationOMD(CtClass c) {
+        for (CtMethod method : c.getMethods()) {
+            String methodName = method.getName();
+            for (CtMethod otherMethod : c.getMethods()) {
+                if (methodName.equalsIgnoreCase(otherMethod.getName())) {
+                    try {
+                        c.removeMethod(otherMethod);
+                    } catch (NotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
     public void parseConfigFile() {
 
     }
