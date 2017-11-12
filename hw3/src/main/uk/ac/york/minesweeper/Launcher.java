@@ -3,8 +3,10 @@ package uk.ac.york.minesweeper;
 import javassist.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Launcher {
     public String className;
@@ -75,8 +77,12 @@ public class Launcher {
         }
     }
 
-    public void parseConfigFile() {
-
+    public void parseConfigFile() throws FileNotFoundException {
+        Scanner sc = new Scanner(new File(""));
+        while(sc.hasNextLine()) {
+            String line = "";
+            
+        }
     }
 
     public void writeToFile(String newFileName, CtClass c) {
