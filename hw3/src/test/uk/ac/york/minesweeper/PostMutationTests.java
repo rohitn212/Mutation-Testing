@@ -124,4 +124,20 @@ public class PostMutationTests {
             assertEquals(false, true);
         }
     }
+
+    @Test
+    public void OMRTest() {
+        try {
+            Class c = Class.forName("OMRMutation");
+            Object o = c.getDeclaredConstructor(Minefield.class)
+                    .newInstance(new Minefield(1, 2, 3));
+            Field f = c.getDeclaredField("uncoverMinesAtEnd"); // gets field to test
+            assertEquals(f.getBoolean(o), true);  // tests field for object
+        } catch (ClassNotFoundException | InvocationTargetException |
+                InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            assertEquals(false, true); // if the test fails, throw a false
+        } catch (NoSuchFieldException e) {
+            assertEquals(false, true);
+        }
+    }
 }
