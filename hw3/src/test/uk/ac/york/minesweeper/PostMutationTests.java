@@ -31,15 +31,17 @@ public class PostMutationTests {
     public void JSDTest() {
         try {
             Class c = Class.forName("uk.ac.york.minesweeper.JSDMutation");
-            Object o = c.getDeclaredConstructor(int.class, int.class, int.class)
+            Object o1 = c.getDeclaredConstructor(int.class, int.class, int.class)
+                    .newInstance(new Object[]{1, 2, 3});
+            Object o2 = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
             Field f = c.getDeclaredField("tilesLeft");
-            f.setInt(o, 1);
+            assertEquals(f.getInt(o1), f.getInt(o2));
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            e.printStackTrace();
+            assertEquals(false, true);
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+            assertEquals(false, true);
         }
     }
 
@@ -73,9 +75,13 @@ public class PostMutationTests {
             Class c = Class.forName("uk.ac.york.minesweeper.AMCMutation");
             Object o = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
+            Field f = c.getDeclaredField("tilesLeft");
+            assertTrue(f.getInt(o) != 1);
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            e.printStackTrace();
+            assertEquals(false, true);
+        } catch (NoSuchFieldException e) {
+            assertEquals(false, true);
         }
     }
 
