@@ -61,4 +61,10 @@ public class PreMutationTests {
         m.setUncoverMinesAtEnd(true);
         assertEquals(m.isUncoveringMinesAtEnd(), true);
     }
+
+    @Test
+    public void PMDTest() {
+        MinefieldStateChangeEvent mce = new MinefieldStateChangeEvent(new Object());
+        assertEquals(mce.serialVersionID.getClass().getName(), "java.lang.String");
+    }
 }
