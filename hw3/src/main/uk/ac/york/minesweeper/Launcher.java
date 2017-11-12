@@ -96,6 +96,7 @@ public class Launcher {
         }
     }
 
+    // Tested
     public void mutationAMC(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(Modifier.setPrivate(field.getModifiers()));
@@ -103,11 +104,12 @@ public class Launcher {
             method.setModifiers(Modifier.setPrivate(method.getModifiers()));
     }
 
+    // Tested
     public void mutationIOD(CtClass c) {
         try {
             CtClass c2 = c.getSuperclass();
             for (CtMethod m1 : c.getDeclaredMethods()) {
-                for (CtMethod m2 : c2.getMethods()) {
+                for (CtMethod m2 : c2.getDeclaredMethods()) {
                     if (m1.equals(m2)) {
                         c.removeMethod(m1);
                     }
@@ -118,11 +120,18 @@ public class Launcher {
         }
     }
 
+
+    // Tested
     public void mutationIOR(CtClass c) {
         try {
-            for (CtMethod method : c.getDeclaredMethods()) {
-                if (method.hasAnnotation("Override")) {
-                    c.getSuperclass().getDeclaredMethod(method.getName()).setName("IORSuccess");
+            CtClass c2 = c.getSuperclass();
+            for (CtMethod m1 : c.getDeclaredMethods()) {
+                for (CtMethod m2 : c2.getMethods()) {
+                    if (m1.equals(m2)) {
+                        System.out.println(c2.getDeclaredMethod("getWidth"));
+                        c2.getDeclaredMethod(m2.getName()).setName("newMethodName");
+                        System.out.println(c2.getDeclaredMethod("newMethodName"));
+                    }
                 }
             }
         } catch (NotFoundException e) {
@@ -238,8 +247,8 @@ public class Launcher {
         CtClass c;
         Launcher l = new Launcher();
         try {
-            c = cp.get(MinefieldPanel.class.getName());
-            l.mutationIOD(c);
+            c = cp.get(MinefieldPane.class.getName());
+            l.mutationIOR(c);
             c.writeFile("test");
         } catch (NotFoundException e) {
             e.printStackTrace();
