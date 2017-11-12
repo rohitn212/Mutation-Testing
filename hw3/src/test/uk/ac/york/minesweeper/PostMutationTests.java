@@ -16,11 +16,11 @@ public class PostMutationTests {
                     .newInstance(new Object[]{1, 2, 3});
             Object o2 = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
-            Field f = c.getDeclaredField("tilesLeft");
-            assertNotEquals(f.getInt(o1), f.getInt(o2));
+            Field f = c.getDeclaredField("tilesLeft"); // gets field to test
+            assertNotEquals(f.getInt(o1), f.getInt(o2)); // tests field for both objects
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true);
+            assertEquals(false, true); // if the test fails, throw a false
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
@@ -34,11 +34,11 @@ public class PostMutationTests {
                     .newInstance(new Object[]{1, 2, 3});
             Object o2 = c.getDeclaredConstructor(int.class, int.class, int.class)
                     .newInstance(new Object[]{1, 2, 3});
-            Field f = c.getDeclaredField("tilesLeft");
-            assertEquals(f.getInt(o1), f.getInt(o2));
+            Field f = c.getDeclaredField("tilesLeft"); // gets field to test
+            assertEquals(f.getInt(o1), f.getInt(o2)); // tests field for both objects
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true);
+            assertEquals(false, true); // if the test fails, throw a false
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
@@ -50,11 +50,11 @@ public class PostMutationTests {
             Class c = Class.forName("JDCMutation");
             Object o = c.getDeclaredConstructor(Minefield.class)
                     .newInstance(new Minefield(1, 2, 3));
-            Field f = c.getDeclaredField("getWidth");
-            assertEquals(f.getInt(o), 10);
+            Field f = c.getDeclaredField("getWidth");  // gets field to test
+            assertEquals(f.getInt(o), 10); // tests field for object
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true);
+            assertEquals(false, true); // if the test fails, throw a false
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
@@ -82,7 +82,7 @@ public class PostMutationTests {
             assertTrue(f.getInt(o) != 1);
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true);
+            assertEquals(false, true); // if the test fails, throw a false
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
@@ -98,7 +98,7 @@ public class PostMutationTests {
             assertEquals(f.getBoolean(o), true);
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true);
+            assertEquals(false, true); // if the test fails, throw a false
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
@@ -115,7 +115,7 @@ public class PostMutationTests {
             assertEquals(f.getName(), "java.lang.String");
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true);
+            assertEquals(false, true); // if the test fails, throw a false
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
@@ -131,7 +131,7 @@ public class PostMutationTests {
             assertEquals(f.getInt(o), 4);
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true);
+            assertEquals(false, true); // if the test fails, throw a false
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
