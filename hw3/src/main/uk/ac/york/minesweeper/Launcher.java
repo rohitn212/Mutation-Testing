@@ -94,7 +94,7 @@ public class Launcher {
             count++;
         }
     }
-
+    
     public void mutationAMC(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(Modifier.setPrivate(field.getModifiers()));
