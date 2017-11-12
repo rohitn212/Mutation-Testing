@@ -1,10 +1,11 @@
 package uk.ac.york.minesweeper;
 
 import javassist.*;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Request;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Launcher {
@@ -144,6 +145,7 @@ public class Launcher {
         ClassPool cp = ClassPool.getDefault();
         CtClass c = null;
         Launcher l = new Launcher();
+        JUnitCore junit = new JUnitCore();
         MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
         Thread[] threadArr = new Thread[l.noOfMutations];
         for (int i = 0; i < threadArr.length; i++) {
@@ -151,6 +153,12 @@ public class Launcher {
             try {
                 c = cp.get(mutationArr[i].className);
             } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                junit.run(Request.method(Class.forName("MutationTest"),
+                        mutationArr[i].mutationTestName));
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
