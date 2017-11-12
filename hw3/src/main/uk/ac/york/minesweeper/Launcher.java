@@ -140,9 +140,8 @@ public class Launcher {
         }
         while (s.hasNext()) {
             String[] mutationInfo = s.next().split(",");
-            mutationArr[count].mutation = mutationInfo[0];
-            mutationArr[count].mutationTestName = mutationInfo[1];
-            mutationArr[count].className = mutationInfo[2];
+            mutationArr[count] = new MutationInfo(mutationInfo[0], mutationInfo[1],
+                    mutationInfo[3]);
             count++;
         }
         return mutationArr;
@@ -183,6 +182,11 @@ public class Launcher {
                 junit.run(Request.method(Class.forName("PostMutationTest"),
                         mutationArr[i].mutationTestName));
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                threadArr[i].join();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
