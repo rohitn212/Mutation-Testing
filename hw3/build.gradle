@@ -7,7 +7,7 @@ version = '1.0.0-SNAPSHOT'
 
 description = """wordcloud"""
 
-sourceSets.main.java.srcDirs = ['src/main']
+sourceSets.main.java.srcDirs = ['src/main', 'src/test']
 sourceSets.test.java.srcDirs = ['src/test']
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

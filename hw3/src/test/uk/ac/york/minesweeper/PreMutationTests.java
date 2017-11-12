@@ -55,8 +55,4 @@ public class PreMutationTests {
         assertTrue(m1.tilesLeft == 1);
     }
 
-    @Test
-    public void IPCTest() {
-
-    }
 }

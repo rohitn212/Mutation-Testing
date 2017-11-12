@@ -1,6 +1,4 @@
-AMC,AMCTest,MinefieldPanel
-IOD,IODTest,MinefieldPanel
-IPC,IPCTest,MinefieldStateChangeEvent
-JDC,JDCTest,MinefieldPanel
-JSD,JSDTest,Minefield
-JSI,JSITest,Minefield
+AMC,AMCTest,uk.ac.york.minesweeper.MinefieldPanel
+IOD,IODTest,uk.ac.york.minesweeper.MinefieldPanel
+JDC,JDCTest,uk.ac.york.minesweeper.MinefieldPanel
+JSI,JSITest,uk.ac.york.minesweeper.Minefield
