@@ -86,4 +86,10 @@ public class MinefieldTest {
         mf.setUncoverMinesAtEnd(true);
 
     }
+
+    @Test
+    public void JSITest() throws Exception {
+        Minefield m = new Minefield(10,10,1);
+        MinefieldPanel mp = new MinefieldPanel(m);
+    }
 }
