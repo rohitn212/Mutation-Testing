@@ -1,6 +1,11 @@
 package uk.ac.york.minesweeper;
 
 import org.junit.Test;
+
+import javax.swing.*;
+
+import java.awt.*;
+
 import static org.junit.Assert.*;
 
 public class PreMutationTests {
@@ -10,7 +15,7 @@ public class PreMutationTests {
         Minefield m2 = new Minefield(20,20,2);
         m1.tilesLeft = 1;
         m2.tilesLeft = 2;
-        assertEquals(m1.tilesLeft, m2.tilesLeft);
+        assertNotEquals(m1.tilesLeft, m2.tilesLeft);
     }
 
     @Test
@@ -19,17 +24,29 @@ public class PreMutationTests {
         Minefield m2 = new Minefield(20,20,2);
         m1.tilesLeft = 1;
         m2.tilesLeft = 2;
-        assertNotEquals(m1.tilesLeft, m2.tilesLeft);
+        assertEquals(m1.tilesLeft, m2.tilesLeft);
     }
 
     @Test
     public void JDCTest() {
         Minefield m = new Minefield(10, 10, 1);
+        assertEquals(m.getWidth(), 10);
     }
 
     @Test
     public void IODTest() {
+        Minefield m = new Minefield(10, 10, 1);
+        JComponent j = new JComponent() {
+            @Override
+            public Dimension getPreferredSize() {
+                return super.getPreferredSize();
+            }
+        };
 
+        MinefieldPanel mp = new MinefieldPanel(m);
+        Dimension d1 = mp.getPreferredSize();
+        Dimension d2 = j.getPreferredSize();
+        assertNotEquals(d1, d2);
     }
 
     @Test
