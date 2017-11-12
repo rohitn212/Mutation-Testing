@@ -156,7 +156,7 @@ public class Launcher {
 
     public static void main(String[] args) {
         ClassPool cp = ClassPool.getDefault();
-        CtClass c = null;
+        CtClass c;
         Launcher l = new Launcher();
         JUnitCore junit = new JUnitCore();
         MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
@@ -165,22 +165,14 @@ public class Launcher {
             threadArr[i] = new Thread();
             try {
                 c = cp.get(mutationArr[i].className);
-            } catch (NotFoundException e) {
-                e.printStackTrace();
-            }
-            try {
                 junit.run(Request.method(Class.forName("PreMutationTest"),
                         mutationArr[i].mutationTestName));
                 l.callMutation(mutationArr[i].mutation, c);
                 l.writeToClass(mutationArr[i].mutation + "mutation", c);
                 junit.run(Request.method(Class.forName("PostMutationTest"),
                         mutationArr[i].mutationTestName));
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            try {
                 threadArr[i].join();
-            } catch (InterruptedException e) {
+            } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
