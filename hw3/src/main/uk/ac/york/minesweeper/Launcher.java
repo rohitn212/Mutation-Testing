@@ -109,11 +109,7 @@ public class Launcher {
             for (CtMethod m1 : c.getDeclaredMethods()) {
                 for (CtMethod m2 : c2.getMethods()) {
                     if (m1.equals(m2)) {
-                        try {
-                            c.removeMethod(m1);
-                        } catch (NotFoundException e) {
-                            e.printStackTrace();
-                        }
+                        c.removeMethod(m1);
                     }
                 }
             }
