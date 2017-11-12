@@ -1,19 +1,23 @@
 package uk.ac.york.minesweeper;
 
 import javassist.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Launcher {
-    public String className;
-    public File configFile;
-    public ArrayList<String> configList = new ArrayList<String>();
 
-    public Launcher(String className, File configFile) {
-        this.className = className;
-        this.configFile = configFile;
+    public class MutationInfo {
+        public String mutation = null;
+        public String mutationTestName = null;
+        public String className = null;
+
+        public MutationInfo(String mutation, String mutationTestName,
+                            String className) {
+            this.mutation = mutation;
+            this.mutationTestName = mutationTestName;
+            this.className = className;
+        }
     }
 
     public void mutationAMC(CtClass c) {
@@ -30,11 +34,25 @@ public class Launcher {
     }
 
     public void mutationIOD(CtClass c) {
-        for (CtMethod method: c.getMethods()) {
+        for (CtMethod method : c.getMethods()) {
             if (c != method.getDeclaringClass()) {
                 try {
                     c.removeMethod(method);
                 } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void mutationIPC(CtClass c) {
+        for (CtConstructor constructor : c.getConstructors()) {
+            if (constructor.isConstructor()) {
+                try {
+                    if (constructor.callsSuper()) {
+
+                    }
+                } catch (CannotCompileException e) {
                     e.printStackTrace();
                 }
             }
@@ -90,8 +108,8 @@ public class Launcher {
         }
     }
 
-    public void parseConfigFile() {
-
+    public static MutationInfo[] parseConfigFile(File configFile) {
+        // todo
     }
 
     public void writeToFile(String newFileName, CtClass c) {
@@ -107,14 +125,18 @@ public class Launcher {
     public static void main(String[] args) {
         ClassPool cp = ClassPool.getDefault();
         CtClass c = null;
-        Launcher l = new Launcher(TemplateClass.class.getName(), new File("configFile.txt"));
-        try {
-            c = cp.get(l.className);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
+        Launcher l = new Launcher();
+        final int noOfMutations = 5;
+        MutationInfo[] mutationArr = new MutationInfo[noOfMutations];
+        mutationArr = parseConfigFile(new File("configFile.txt"));
+        Thread[] threadArr = new Thread[noOfMutations];
+        for (int i = 0; i < threadArr.length; i++) {
+            threadArr[i] = new Thread();
+            try {
+                c = cp.get(mutationArr[i].className);
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
         }
-
-        l.mutationJSI(c);
-        l.writeToFile("newclasslol", c);
     }
 }
