@@ -7,6 +7,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -69,7 +70,7 @@ public class Launcher {
         else {
             for (int i=0; i<i1.getPair().size(); i++) {
                 if (i1.getPair().get(i).getKey().equals(i2.getPair().get(i).getKey())
-                        && i1.getPair().get(i).getValue().equals(i2.getPair().get(i).getValue())) {
+                    && i1.getPair().get(i).getValue().equals(i2.getPair().get(i).getValue())) {
                     return true;
                 }
             }
@@ -94,7 +95,7 @@ public class Launcher {
             count++;
         }
     }
-    
+
     public void mutationAMC(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(Modifier.setPrivate(field.getModifiers()));
@@ -103,14 +104,21 @@ public class Launcher {
     }
 
     public void mutationIOD(CtClass c) {
-        for (CtMethod method : c.getDeclaredMethods()) {
-            if (c != method.getDeclaringClass()) {
-                try {
-                    c.removeMethod(method);
-                } catch (NotFoundException e) {
-                    e.printStackTrace();
+        try {
+            CtClass c2 = c.getSuperclass();
+            for (CtMethod m1 : c.getDeclaredMethods()) {
+                for (CtMethod m2 : c2.getMethods()) {
+                    if (m1.equals(m2)) {
+                        try {
+                            c.removeMethod(m1);
+                        } catch (NotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
+        } catch (NotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -233,26 +241,38 @@ public class Launcher {
         ClassPool cp = ClassPool.getDefault();
         CtClass c;
         Launcher l = new Launcher();
-        JUnitCore junit = new JUnitCore();
-        MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
-        Thread[] threadArr = new Thread[l.noOfMutations];
-        for (int i = 0; i < threadArr.length; i++) {
-            threadArr[i] = new Thread();
-            try {
-                c = cp.get(mutationArr[i].className);
-                junit.run(Request.method(Class.forName(PreMutationTests.class.getName()),
-                        mutationArr[i].mutationTestName));
-                ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.copyInstrumList();
-                TemplateClass.instrumList.clear();
-                l.callMutation(mutationArr[i].mutation, c);
-                l.writeToClass(mutationArr[i].mutation + "Mutation", c);
-                junit.run(Request.method(Class.forName(PostMutationTests.class.getName()),
-                        mutationArr[i].mutationTestName));
-                l.compareInstrumLists(oldInstrumList, TemplateClass.instrumList);
-                threadArr[i].join();
-            } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            c = cp.get(MinefieldPanel.class.getName());
+            l.mutationIOD(c);
+            c.writeFile("test");
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+//        JUnitCore junit = new JUnitCore();
+//        MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
+//        Thread[] threadArr = new Thread[l.noOfMutations];
+//        for (int i = 0; i < threadArr.length; i++) {
+//            threadArr[i] = new Thread();
+//            try {
+//                c = cp.get(mutationArr[i].className);
+//                junit.run(Request.method(Class.forName(PreMutationTests.class.getName()),
+//                        mutationArr[i].mutationTestName));
+//                ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.copyInstrumList();
+//                TemplateClass.instrumList.clear();
+//                l.callMutation(mutationArr[i].mutation, c);
+//                l.writeToClass(mutationArr[i].mutation + "Mutation", c);
+//                junit.run(Request.method(Class.forName(PostMutationTests.class.getName()),
+//                        mutationArr[i].mutationTestName));
+//                l.compareInstrumLists(oldInstrumList, TemplateClass.instrumList);
+//                threadArr[i].join();
+//            } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
