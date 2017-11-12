@@ -132,7 +132,7 @@ public class Launcher {
         MutationInfo[] mutationArr = new MutationInfo[noOfMutations];
         int count = 0;
         try {
-            Scanner s = new Scanner(configFile);
+            s = new Scanner(configFile);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
