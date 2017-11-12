@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Launcher {
+    public final int noOfMutations = 5;
 
-    public class MutationInfo {
+    public static class MutationInfo {
         public String mutation = null;
         public String mutationTestName = null;
         public String className = null;
@@ -110,9 +111,23 @@ public class Launcher {
         }
     }
 
-
-    public static MutationInfo[] parseConfigFile(File configFile) {
-        // todo
+    public static MutationInfo[] parseConfigFile(File configFile, int noOfMutations) {
+        Scanner s = null;
+        MutationInfo[] mutationArr = new MutationInfo[noOfMutations];
+        int count = 0;
+        try {
+            s = new Scanner(configFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (s.hasNext()) {
+            String[] mutationInfo = s.next().split(",");
+            mutationArr[count].mutation = mutationInfo[0];
+            mutationArr[count].mutationTestName = mutationInfo[1];
+            mutationArr[count].className = mutationInfo[2];
+            count++;
+        }
+        return mutationArr;
     }
 
     public void writeToFile(String newFileName, CtClass c) {
@@ -129,10 +144,8 @@ public class Launcher {
         ClassPool cp = ClassPool.getDefault();
         CtClass c = null;
         Launcher l = new Launcher();
-        final int noOfMutations = 5;
-        MutationInfo[] mutationArr = new MutationInfo[noOfMutations];
-        mutationArr = parseConfigFile(new File("configFile.txt"));
-        Thread[] threadArr = new Thread[noOfMutations];
+        MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
+        Thread[] threadArr = new Thread[l.noOfMutations];
         for (int i = 0; i < threadArr.length; i++) {
             threadArr[i] = new Thread();
             try {
