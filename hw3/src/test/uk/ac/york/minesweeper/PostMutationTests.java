@@ -52,9 +52,13 @@ public class PostMutationTests {
             Class c = Class.forName("uk.ac.york.minesweeper.JDCMutation");
             Object o = c.getDeclaredConstructor(Minefield.class)
                     .newInstance(new Object[]{new Minefield(1, 2, 3)});
+            Field f = c.getDeclaredField("getWidth");
+            assertEquals(f.getInt(o), 10);
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            e.printStackTrace();
+            assertEquals(false, true);
+        } catch (NoSuchFieldException e) {
+            assertEquals(false, true);
         }
     }
 
