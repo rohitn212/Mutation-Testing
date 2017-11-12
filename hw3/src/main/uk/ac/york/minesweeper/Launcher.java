@@ -1,6 +1,8 @@
 package uk.ac.york.minesweeper;
 
+import javafx.util.Pair;
 import javassist.*;
+import org.eclipse.jface.text.templates.Template;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
 import java.io.File;
@@ -59,12 +61,30 @@ public class Launcher {
         }
     }
 
+    public boolean deepCompare(TemplateClass.Instrument i1, TemplateClass.Instrument i2) {
+        if (i1.getPair().size() != i2.getPair().size()) {
+            return false;
+        }
+
+        else {
+            for (int i=0; i<i1.getPair().size(); i++) {
+                if (i1.getPair().get(i).getKey().equals(i2.getPair().get(i).getKey())
+                        && i1.getPair().get(i).getValue().equals(i2.getPair().get(i).getValue())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void compareInstrumLists(ArrayList<TemplateClass.Instrument> oldInstrumList,
                                     ArrayList<TemplateClass.Instrument> newInstrumList) {
         if (oldInstrumList == null || newInstrumList == null) throw new NullPointerException();
         int count = 0;
+
+        // todo: deep compare instead of reference compare
         while (count < oldInstrumList.size() && count < newInstrumList.size()) {
-            if (!oldInstrumList.get(count).equals(newInstrumList.get(count))) {
+            if (!deepCompare(oldInstrumList.get(count), newInstrumList.get(count))) {
                 System.out.println("\nChange detected");
                 System.out.println("premutation values: ");
                 oldInstrumList.get(count).printInstrument();
