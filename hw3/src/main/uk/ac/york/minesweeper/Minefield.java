@@ -114,7 +114,7 @@ public class Minefield
 
     public boolean isUncoverMinesAtEnd(boolean flag) {
         instrum(113,"return",new Pair<>("uk.ac.york.minesweeper.Minefield.uncoverMinesAtEnd",uncoverMinesAtEnd));
-        return uncoverMinesAtEnd;
+        return !uncoverMinesAtEnd;
     }
 
     /**

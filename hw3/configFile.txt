@@ -4,4 +4,5 @@ IOR,IORTest,uk.ac.york.minesweeper.MinefieldPane
 JDC,JDCTest,uk.ac.york.minesweeper.MinefieldPanel
 JSI,JSITest,uk.ac.york.minesweeper.Minefield
 OMD,OMDTest,uk.ac.york.minesweeper.Minefield
+OMR,OMRTest,uk.ac.york.minesweeper.Minefield
 PMD,PMDTest,uk.ac.york.minesweeper.MinefieldStateChangeEvent

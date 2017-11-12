@@ -27,24 +27,6 @@ public class PostMutationTests {
     }
 
     @Test
-    public void JSDTest() {
-        try {
-            Class c = Class.forName("JSDMutation");
-            Object o1 = c.getDeclaredConstructor(int.class, int.class, int.class)
-                    .newInstance(new Object[]{1, 2, 3});
-            Object o2 = c.getDeclaredConstructor(int.class, int.class, int.class)
-                    .newInstance(new Object[]{1, 2, 3});
-            Field f = c.getDeclaredField("tilesLeft"); // gets field to test
-            assertEquals(f.getInt(o1), f.getInt(o2)); // tests field for both objects
-        } catch (ClassNotFoundException | InvocationTargetException |
-                InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            assertEquals(false, true); // if the test fails, throw a false
-        } catch (NoSuchFieldException e) {
-            assertEquals(false, true);
-        }
-    }
-
-    @Test
     public void JDCTest() {
         try {
             Class c = Class.forName("JDCMutation");

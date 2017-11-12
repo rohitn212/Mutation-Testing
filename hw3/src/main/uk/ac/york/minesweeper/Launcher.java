@@ -48,6 +48,9 @@ public class Launcher {
             case "OMD":
                 this.mutationOMD(c);
                 break;
+            case "OMR":
+                this.mutationOMR(c);
+                break;
             case "PMD":
                 this.mutationPMD(c);
                 break;
@@ -144,6 +147,30 @@ public class Launcher {
         }
     }
 
+    public void mutationOMR(CtClass c) {
+        for (CtMethod method : c.getDeclaredMethods()) {
+            String methodName = method.getName();
+            try {
+                int methodTypeNo = method.getParameterTypes().length;
+                for (CtMethod otherMethod : c.getDeclaredMethods()) {
+                    int otherMethodTypeNo = otherMethod.getParameterTypes().length;
+                    if (methodName.equalsIgnoreCase(otherMethod.getName())) {
+                        if (methodTypeNo > otherMethodTypeNo && otherMethodTypeNo == 0) {
+                            otherMethod.setBody(methodName + "();");
+                        }
+                        else if (methodTypeNo < otherMethodTypeNo && methodTypeNo == 0) {
+                            method.setBody(otherMethod.getName() + "();");
+                        }
+                    }
+                }
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            } catch (CannotCompileException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void mutationPMD(CtClass c) {
         try {
             for (CtField field : c.getDeclaredFields()) {
@@ -175,9 +202,7 @@ public class Launcher {
 
     public void writeToClass(String newFileName, CtClass c) {
         try {
-//            System.out.println(c.getName());
             c.setName(newFileName);
-//            System.out.println(c.getName());
             c.toClass();
         } catch (CannotCompileException e) {
             e.printStackTrace();

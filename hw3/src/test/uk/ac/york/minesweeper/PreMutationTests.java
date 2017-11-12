@@ -19,14 +19,6 @@ public class PreMutationTests {
     }
 
     @Test
-    public void JSDTest() {
-        Minefield m = new Minefield(10,10,1);
-        MinefieldPanel mp1 = new MinefieldPanel(m);
-        MinefieldPanel mp2 = new MinefieldPanel(m);
-        assertEquals(mp1.FONT, mp2.FONT);
-    }
-
-    @Test
     public void JDCTest() {
         Minefield m = new Minefield(10, 10, 1);
         assertEquals(m.getWidth(), 10);
