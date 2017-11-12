@@ -10,6 +10,7 @@ import javafx.util.Pair;
 public class MinefieldStateChangeEvent extends EventObject
 {
     private static final long serialVersionUID = 1L;
+    public String serialVersionID = new String();
 
     /**
      * Initializes a new MinefieldStateChangeEvent object
