@@ -40,6 +40,16 @@ public class TemplateClass {
         void setPair(ArrayList<Pair<String, Object>> pair) {
             this.pair = pair;
         }
+
+        public void printInstrument() {
+            System.out.println("line: " + getLine());
+            System.out.println("type: " + getType());
+            System.out.println("Pair: \n");
+            ArrayList<Pair<String, Object>> arr = getPair();
+            for (int i = 0; i < arr.size(); i++) {
+                System.out.println(arr.get(i).toString());
+            }
+        }
     }
     public static ArrayList<Instrument> instrumList = new ArrayList<>();
 

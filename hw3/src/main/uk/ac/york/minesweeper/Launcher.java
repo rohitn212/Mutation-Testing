@@ -5,6 +5,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -46,6 +47,21 @@ public class Launcher {
                 break;
             default:
                 throw new InputMismatchException();
+        }
+    }
+
+    public void compareInstrumLists(ArrayList<TemplateClass.Instrument> oldInstrumList,
+                                    ArrayList<TemplateClass.Instrument> newInstrumList) {
+        if (oldInstrumList == null || newInstrumList == null) throw new NullPointerException();
+        int count = 0;
+        while (count < oldInstrumList.size() && count < newInstrumList.size()) {
+            if (oldInstrumList.get(count) != newInstrumList.get(count)) {
+                System.out.println("Change detected");
+                System.out.println("premutation values: \n");
+                oldInstrumList.get(count).printInstrument();
+                System.out.println("postmutation values: \n");
+                newInstrumList.get(count).printInstrument();
+            }
         }
     }
 
@@ -167,10 +183,14 @@ public class Launcher {
                 c = cp.get(mutationArr[i].className);
                 junit.run(Request.method(Class.forName("PreMutationTest"),
                         mutationArr[i].mutationTestName));
+                ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.instrumList;
+                TemplateClass.instrumList.clear();
                 l.callMutation(mutationArr[i].mutation, c);
                 l.writeToClass(mutationArr[i].mutation + "mutation", c);
+                ArrayList<TemplateClass.Instrument> newInstrumList = TemplateClass.instrumList;
                 junit.run(Request.method(Class.forName("PostMutationTest"),
                         mutationArr[i].mutationTestName));
+                l.compareInstrumLists(oldInstrumList, newInstrumList);
                 threadArr[i].join();
             } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
                 e.printStackTrace();
