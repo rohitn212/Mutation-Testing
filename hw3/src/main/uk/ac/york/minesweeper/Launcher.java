@@ -6,6 +6,8 @@ import org.junit.runner.Request;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Launcher {
@@ -21,6 +23,31 @@ public class Launcher {
             this.mutation = mutation;
             this.mutationTestName = mutationTestName;
             this.className = className;
+        }
+    }
+
+    public void callMutation(String mutationName, CtClass c) {
+        switch(mutationName) {
+            case "AMC":
+                this.mutationAMC(c);
+                break;
+            case "IOD":
+                this.mutationIOD(c);
+                break;
+            case "IPC":
+                this.mutationIPC(c);
+                break;
+            case "JDC":
+                this.mutationJDC(c);
+                break;
+            case "JSD":
+                this.mutationJSD(c);
+                break;
+            case "JSI":
+                this.mutationJSI(c);
+                break;
+            default:
+                throw new InputMismatchException();
         }
     }
 
@@ -130,7 +157,7 @@ public class Launcher {
         }
     }
 
-    public static void main(String[] args) throws CannotCompileException {
+    public static void main(String[] args) {
         ClassPool cp = ClassPool.getDefault();
         CtClass c = null;
         Launcher l = new Launcher();
@@ -150,6 +177,8 @@ public class Launcher {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            l.callMutation(mutationArr[i].mutation, c);
+            l.writeToClass(mutationArr[i].mutation + "mutation", c);
             try {
                 junit.run(Request.method(Class.forName("PostMutationTest"),
                         mutationArr[i].mutationTestName));
