@@ -56,16 +56,6 @@ OMD Code:
 
 -------------------------------------
 
-Proceedure:
-
-Step 1:
-
-Step 2:
-
-Step 3:
-
--------------------------------------
-
 Configuration File Setup:
 
 The configuration file is set up in the following manner:
@@ -73,6 +63,20 @@ The configuration file is set up in the following manner:
 mutationName,methodNameinTestFile,classToTest
 
 ![Scheme](/Images/configFile.png)
+
+-------------------------------------
+
+Proceedure:
+
+Step 1: Parse the config file
+
+Step : Make a an array of n threads where n is the number of mutations 
+
+Step : Run the pre mutation tests
+
+Step : Mutate the code
+
+Step : 
 
 -------------------------------------
 
