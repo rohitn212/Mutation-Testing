@@ -41,6 +41,7 @@ public class TemplateClass {
             this.pair = pair;
         }
 
+        // prints the instrumented code 
         public void printInstrument() {
             System.out.println("line: " + getLine());
             System.out.println("type: " + getType());
@@ -53,12 +54,14 @@ public class TemplateClass {
     }
     public static ArrayList<Instrument> instrumList = new ArrayList<>();
 
+    // Creates a deep copy of the instrum list
     public static ArrayList<Instrument> copyInstrumList() {
         ArrayList<Instrument> newInstrumList = new ArrayList<>();
         for (Instrument instr: instrumList) newInstrumList.add(instr);
         return newInstrumList;
     }
 
+    // Generates the instrumented code
     public static void instrum(int line, String type, Pair<String, Object>...args) {
         ArrayList<Pair<String, Object>> pairList = new ArrayList<>();
         Collections.addAll(pairList, args);
