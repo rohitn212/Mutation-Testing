@@ -8,6 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 import static org.junit.Assert.*;
 
 public class PostMutationTests {
+
+    // Tests the Static Modifier Insertion mutation
     @Test
     public void JSITest() {
         try {
@@ -26,6 +28,7 @@ public class PostMutationTests {
         }
     }
 
+    // Tests the Java-supported Default Constructor mutation
     @Test
     public void JDCTest() {
         try {
@@ -42,6 +45,7 @@ public class PostMutationTests {
         }
     }
 
+    // Tests the Overriding Method Deletion mutation
     @Test
     public void IODTest() {
         try {
@@ -60,6 +64,7 @@ public class PostMutationTests {
         }
     }
 
+    // Tests the Access Modifier Change mutation
     @Test
     public void AMCTest() {
         try {
@@ -76,6 +81,7 @@ public class PostMutationTests {
         }
     }
 
+    // Tests the Overloading Method Deletion mutation
     @Test
     public void OMDTest() {
         try {
@@ -92,7 +98,7 @@ public class PostMutationTests {
         }
     }
 
-
+    // Tests the Member Variable Declaration With Parent Class type mutation
     @Test
     public void PMDTest() {
         try {
@@ -109,6 +115,7 @@ public class PostMutationTests {
         }
     }
 
+    // Tests the Overridden Method Rename mutation
     @Test
     public void IORTest() {
         try {
@@ -125,6 +132,7 @@ public class PostMutationTests {
         }
     }
 
+    // Tests the Overloading Method Contents Change mutation
     @Test
     public void OMRTest() {
         try {
