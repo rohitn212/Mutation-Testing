@@ -10,7 +10,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Launcher {
-    public final int noOfMutations = 6;
+    public final int noOfMutations = 7;
 
     public static class MutationInfo {
         public String mutation = null;
@@ -32,6 +32,9 @@ public class Launcher {
                 break;
             case "IOD":
                 this.mutationIOD(c);
+                break;
+            case "IOR":
+                this.mutationIOR(c);
                 break;
             case "JDC":
                 this.mutationJDC(c);
@@ -69,7 +72,6 @@ public class Launcher {
         }
     }
 
-    // tested
     public void mutationAMC(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(Modifier.setPrivate(field.getModifiers()));
@@ -77,7 +79,6 @@ public class Launcher {
             method.setModifiers(Modifier.setPrivate(method.getModifiers()));
     }
 
-    // tested
     public void mutationIOD(CtClass c) {
         for (CtMethod method : c.getDeclaredMethods()) {
             if (c != method.getDeclaringClass()) {
@@ -87,6 +88,18 @@ public class Launcher {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void mutationIOR(CtClass c) {
+        try {
+            for (CtMethod method : c.getDeclaredMethods()) {
+                if (method.hasAnnotation("Override")) {
+                    c.getSuperclass().getDeclaredMethod(method.getName()).setName("IORSuccess");
+                }
+            }
+        } catch (NotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -102,7 +115,6 @@ public class Launcher {
         }
     }
 
-    // tested
     public void mutationJSD(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(field.getModifiers() & ~Modifier.STATIC);
@@ -110,7 +122,6 @@ public class Launcher {
             method.setModifiers(method.getModifiers() & ~Modifier.STATIC);
     }
 
-    // tested
     public void mutationJSI(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(field.getModifiers() | Modifier.STATIC);

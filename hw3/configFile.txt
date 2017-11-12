@@ -1,5 +1,6 @@
 AMC,AMCTest,uk.ac.york.minesweeper.MinefieldPanel
 IOD,IODTest,uk.ac.york.minesweeper.MinefieldPanel
+IOR,IORTest,uk.ac.york.minesweeper.MinefieldPane
 JDC,JDCTest,uk.ac.york.minesweeper.MinefieldPanel
 JSI,JSITest,uk.ac.york.minesweeper.Minefield
 OMD,OMDTest,uk.ac.york.minesweeper.Minefield
