@@ -88,4 +88,21 @@ public class PostMutationTests {
         }
     }
 
+    @Test
+    public void OMDTest() {
+        try {
+            Class c = Class.forName("OMDMutation");
+            Object o = c.getDeclaredConstructor(Minefield.class)
+                    .newInstance(new Minefield(1, 2, 3));
+            Field f = c.getDeclaredField("uncoverMinesAtEnd");
+            assertEquals(f.getBoolean(o), true);
+        } catch (ClassNotFoundException | InvocationTargetException |
+                InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            assertEquals(false, true);
+        } catch (NoSuchFieldException e) {
+            assertEquals(false, true);
+        }
+
+    }
+
 }
