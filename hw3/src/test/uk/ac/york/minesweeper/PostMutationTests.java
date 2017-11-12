@@ -64,11 +64,17 @@ public class PostMutationTests {
     public void IODTest() {
         try {
             Class c = Class.forName("IODMutation");
-            Object o = c.getDeclaredConstructor(Minefield.class)
+            Object o1 = c.getDeclaredConstructor(Minefield.class)
                     .newInstance(new Minefield(1, 2, 3));
+            Object o2 = c.getDeclaredConstructor(Minefield.class)
+                    .newInstance(new Minefield(1, 2, 3));
+            Field f = c.getDeclaredField("preferredSize"); // gets field to test
+            assertEquals(f.getInt(o1), f.getInt(o2)); // tests field for object
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            e.printStackTrace();
+            assertEquals(false, true); // if the test fails, throw a false
+        } catch (NoSuchFieldException e) {
+            assertEquals(false, true);
         }
     }
 
@@ -78,8 +84,8 @@ public class PostMutationTests {
             Class c = Class.forName("AMCMutation");
             Object o = c.getDeclaredConstructor(Minefield.class)
                     .newInstance(new Minefield(1, 2, 3));
-            Field f = c.getDeclaredField("tilesLeft");
-            assertTrue(f.getInt(o) != 1);
+            Field f = c.getDeclaredField("tilesLeft"); // gets field to test
+            assertTrue(f.getInt(o) != 1); // tests field for object
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             assertEquals(false, true); // if the test fails, throw a false
@@ -94,8 +100,8 @@ public class PostMutationTests {
             Class c = Class.forName("OMDMutation");
             Object o = c.getDeclaredConstructor(Minefield.class)
                     .newInstance(new Minefield(1, 2, 3));
-            Field f = c.getDeclaredField("uncoverMinesAtEnd");
-            assertEquals(f.getBoolean(o), true);
+            Field f = c.getDeclaredField("uncoverMinesAtEnd"); // gets field to test
+            assertEquals(f.getBoolean(o), true);  // tests field for object
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             assertEquals(false, true); // if the test fails, throw a false
@@ -111,8 +117,8 @@ public class PostMutationTests {
             Class c = Class.forName("PMDMutation");
             Object o = c.getDeclaredConstructor(Minefield.class)
                     .newInstance(new Minefield(1, 2, 3));
-            Field f = c.getDeclaredField("serialVersionID");
-            assertEquals(f.getName(), "java.lang.String");
+            Field f = c.getDeclaredField("serialVersionID"); // gets field to test
+            assertEquals(f.getName(), "java.lang.String"); // tests field for object
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             assertEquals(false, true); // if the test fails, throw a false
@@ -127,8 +133,8 @@ public class PostMutationTests {
             Class c = Class.forName("IORMutation");
             Object o = c.getDeclaredConstructor(Minefield.class)
                     .newInstance(new Minefield(1, 2, 3));
-            Field f = c.getDeclaredField("width");
-            assertEquals(f.getInt(o), 4);
+            Field f = c.getDeclaredField("width"); // gets field to test
+            assertEquals(f.getInt(o), 4); // tests field for object
         } catch (ClassNotFoundException | InvocationTargetException |
                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             assertEquals(false, true); // if the test fails, throw a false
