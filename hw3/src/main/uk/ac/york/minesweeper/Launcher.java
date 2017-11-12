@@ -10,7 +10,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Launcher {
-    public final int noOfMutations = 4;
+    public final int noOfMutations = 5;
 
     public static class MutationInfo {
         public String mutation = null;
@@ -41,6 +41,9 @@ public class Launcher {
                 break;
             case "JSI":
                 this.mutationJSI(c);
+                break;
+            case "OMD":
+                this.mutationOMD(c);
                 break;
             default:
                 throw new InputMismatchException();
@@ -124,6 +127,18 @@ public class Launcher {
                     }
                 }
             }
+        }
+    }
+
+    public void mutationPMD(CtClass c) {
+        try {
+            for (CtField field : c.getDeclaredFields()) {
+                System.out.println(field.getType().getSuperclass().getName());
+                if (field.getType().getSuperclass().getName().equalsIgnoreCase("java.lang.Object"))
+                    field.setType(field.getType().getSuperclass());
+            }
+        } catch (NotFoundException e) {
+            e.printStackTrace();
         }
     }
 

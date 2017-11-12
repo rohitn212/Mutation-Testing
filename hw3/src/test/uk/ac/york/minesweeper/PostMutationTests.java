@@ -102,7 +102,6 @@ public class PostMutationTests {
         } catch (NoSuchFieldException e) {
             assertEquals(false, true);
         }
-
     }
 
 }
