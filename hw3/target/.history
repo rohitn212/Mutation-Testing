@@ -30,3 +30,13 @@ compile
 run
 compile
 test
+run-main src.main.uk.ac.york.minesweeper.Launcher 
+run-main main.uk.ac.york.minesweeper.Launcher 
+run
+exit
+run
+clear
+exit
+run
+exit
+run
