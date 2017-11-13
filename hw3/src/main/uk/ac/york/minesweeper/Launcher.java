@@ -1,18 +1,20 @@
 package uk.ac.york.minesweeper;
 
-import javafx.util.Pair;
 import javassist.*;
-import org.eclipse.jface.text.templates.Template;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Launcher {
     public final int noOfMutations = 8;
 
+    // class that stores each mutation
     public static class MutationInfo {
         public String mutation = null;
         public String mutationTestName = null;

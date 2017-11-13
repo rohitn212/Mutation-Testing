@@ -41,7 +41,7 @@ public class TemplateClass {
             this.pair = pair;
         }
 
-        // prints the instrumented code 
+        // prints the instrumented code
         public void printInstrument() {
             System.out.println("line: " + getLine());
             System.out.println("type: " + getType());
@@ -66,6 +66,6 @@ public class TemplateClass {
         ArrayList<Pair<String, Object>> pairList = new ArrayList<>();
         Collections.addAll(pairList, args);
         Instrument i = new Instrument(line, type, pairList);
-        instrumList.add(i);
+        instrumList.add(i); // stores the instrum code into the instrum list
     }
 }
