@@ -1,0 +1,14 @@
+run-main uk.ac.york.minesweeper.Launcher
+run
+clear
+compile
+run
+sbt compile
+compile
+run
+clean
+compile
+run
+clean
+compile
+run
