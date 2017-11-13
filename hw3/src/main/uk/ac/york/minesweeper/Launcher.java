@@ -6,6 +6,7 @@ import org.junit.runner.Request;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -187,7 +188,6 @@ public class Launcher {
             method.setModifiers(method.getModifiers() | Modifier.STATIC);
     }
 
-    // todo:testing
     public void mutationOMD(CtClass c) {
         HashSet<String> set = new HashSet<>();
         for (CtMethod method : c.getDeclaredMethods()) {
@@ -227,7 +227,7 @@ public class Launcher {
     }
     */
 
-    // todo:testing
+    // Tested
     public void mutationOMR(CtClass c) {
         HashSet<String> set = new HashSet<String>();
         for (CtMethod method : c.getDeclaredMethods()) {
@@ -235,9 +235,7 @@ public class Launcher {
                 if (method.getParameterTypes().length == 0)
                     if (!set.add(method.getName()))
                         method.setBody("return " + method.getName() + "();");
-            } catch (NotFoundException e) {
-                e.printStackTrace();
-            } catch (CannotCompileException e) {
+            } catch (NotFoundException | CannotCompileException e) {
                 e.printStackTrace();
             }
         }
