@@ -4,193 +4,39 @@
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void callMutation(String mutationName, CtClass c) throws ClassNotFoundException {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:100:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:99:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationAMC(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:108:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:107:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationIOD(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:125:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:133:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationIOR(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:142:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:162:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationJDC(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:155:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:175:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationJSD(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:163:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:183:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationJSI(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:171:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:191:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationOMD(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:184:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:231:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationOMR(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:208:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:247:1: cannot find symbol[0m
 [0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
 [0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
 [0m[[0m[31merror[0m] [0m[0m    public void mutationPMD(CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:247:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m    public void writeToClass(String newFileName, CtClass c) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:101:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtField[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtField field : c.getDeclaredFields())[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:102:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable Modifier[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            field.setModifiers(Modifier.setPrivate(field.getModifiers()));[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:103:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtMethod method : c.getDeclaredMethods())[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:104:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable Modifier[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            method.setModifiers(Modifier.setPrivate(method.getModifiers()));[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:110:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            CtClass c2 = c.getSuperclass();[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:111:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            for (CtMethod m1 : c.getDeclaredMethods()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:112:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m                for (CtMethod m2 : c2.getDeclaredMethods()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:118:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class NotFoundException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        } catch (NotFoundException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:127:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            CtClass c2 = c.getSuperclass();[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:128:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            for (CtMethod m1 : c.getDeclaredMethods()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:129:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m                for (CtMethod m2 : c2.getMethods()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:135:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class NotFoundException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        } catch (NotFoundException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:143:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtConstructor[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtConstructor constructor : c.getDeclaredConstructors()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:147:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class NotFoundException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m                } catch (NotFoundException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:156:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtField[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtField field : c.getDeclaredFields())[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:157:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable Modifier[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            field.setModifiers(field.getModifiers() & ~Modifier.STATIC);[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:158:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtMethod method : c.getDeclaredMethods())[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:159:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable Modifier[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            method.setModifiers(method.getModifiers() & ~Modifier.STATIC);[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:164:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtField[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtField field : c.getDeclaredFields())[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:165:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable Modifier[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            field.setModifiers(field.getModifiers() | Modifier.STATIC);[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:166:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtMethod method : c.getMethods())[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:167:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable Modifier[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            method.setModifiers(method.getModifiers() | Modifier.STATIC);[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:173:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtMethod method : c.getDeclaredMethods()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:177:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class NotFoundException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m                } catch (NotFoundException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:185:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        for (CtMethod method : c.getDeclaredMethods()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:189:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtMethod[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m                for (CtMethod otherMethod : c.getDeclaredMethods()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:200:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class NotFoundException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            } catch (NotFoundException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:202:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CannotCompileException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            } catch (CannotCompileException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:210:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtField[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            for (CtField field : c.getDeclaredFields()) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:214:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class NotFoundException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        } catch (NotFoundException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:241:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CannotCompileException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        } catch (CannotCompileException e) {[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:247:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class ClassPool[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        ClassPool cp = ClassPool.getDefault();[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:247:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   variable ClassPool[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        ClassPool cp = ClassPool.getDefault();[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:248:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class CtClass[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m        CtClass c;[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:258:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class PreMutationTests[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m                junit.run(Request.method(Class.forName(PreMutationTests.class.getName()),[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:264:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class PostMutationTests[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m                junit.run(Request.method(Class.forName(PostMutationTests.class.getName()),[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java:268:1: cannot find symbol[0m
-[0m[[0m[31merror[0m] [0m[0m  symbol:   class NotFoundException[0m
-[0m[[0m[31merror[0m] [0m[0m  location: class uk.ac.york.minesweeper.Launcher[0m
-[0m[[0m[31merror[0m] [0m[0m            } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {[0m
-[0m[[0m[0minfo[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/TemplateClass.java: Some input files use unchecked or unsafe operations.[0m
-[0m[[0m[0minfo[0m] [0m[0m/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/TemplateClass.java: Recompile with -Xlint:unchecked for details.[0m

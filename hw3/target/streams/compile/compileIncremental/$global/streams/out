@@ -16,4 +16,52 @@
 [0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(/Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/MinefieldPanel.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/GameState.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/TileState.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/TemplateClass.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/MinefieldStateChangeEvent.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/MinefieldPanel.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Images.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/MinefieldStateChangeListener.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Launcher.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/TileState.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/MinefieldStateChangeListener.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/MinesweeperFrame.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/GameState.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/MinesweeperFrame.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/MinefieldPane.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/Minefield.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/Minefield.java, /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/src/main/uk/ac/york/minesweeper/MinefieldStateChangeEvent.java, /Users/kobebryant1624/Desktop/441HW2/harsha_dodda_hw1/java-minesweeper-master/src/main/uk/ac/york/minesweeper/Images.java)[0m
 [0m[[0m[0mdebug[0m] [0m[0mRecompiling all 11 sources: invalidated sources (19) exceeded 50.0% of all sources[0m
 [0m[[0m[0minfo[0m] [0m[0mCompiling 11 Java sources to /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/target/scala-2.12/classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@650f815c directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@100de41a directly...[0m
+[0m[[0m[31merror[0m] [0m[0m## Exception when compiling 11 sources to /Users/kobebryant1624/Desktop/harsh_patel_rohit_nambiar_harsha_dodda_hw3/hw3/target/scala-2.12/classes[0m
+[0m[[0m[31merror[0m] [0m[0mjava.lang.NullPointerException[0m
+[0m[[0m[31merror[0m] [0m[0mcom.sun.tools.javac.main.Main.compile(Main.java:559)[0m
+[0m[[0m[31merror[0m] [0m[0mcom.sun.tools.javac.api.JavacTaskImpl.doCall(JavacTaskImpl.java:129)[0m
+[0m[[0m[31merror[0m] [0m[0mcom.sun.tools.javac.api.JavacTaskImpl.call(JavacTaskImpl.java:138)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.javac.LocalJavaCompiler.run(LocalJava.scala:152)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.javac.AnalyzingJavaCompiler.$anonfun$compile$11(AnalyzingJavaCompiler.scala:130)[0m
+[0m[[0m[31merror[0m] [0m[0mscala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:12)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.javac.AnalyzingJavaCompiler.timed(AnalyzingJavaCompiler.scala:196)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.javac.AnalyzingJavaCompiler.compile(AnalyzingJavaCompiler.scala:120)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.MixedAnalyzingCompiler.$anonfun$compile$4(MixedAnalyzingCompiler.scala:104)[0m
+[0m[[0m[31merror[0m] [0m[0mscala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:12)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.MixedAnalyzingCompiler.timed(MixedAnalyzingCompiler.scala:132)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.MixedAnalyzingCompiler.compileJava$1(MixedAnalyzingCompiler.scala:89)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.MixedAnalyzingCompiler.compile(MixedAnalyzingCompiler.scala:115)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompilerImpl.$anonfun$compileInternal$1(IncrementalCompilerImpl.scala:305)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompilerImpl.$anonfun$compileInternal$1$adapted(IncrementalCompilerImpl.scala:305)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.Incremental$.doCompile(Incremental.scala:101)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.Incremental$.$anonfun$compile$4(Incremental.scala:82)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCommon.recompileClasses(IncrementalCommon.scala:118)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCommon.cycle(IncrementalCommon.scala:64)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.Incremental$.$anonfun$compile$3(Incremental.scala:84)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.Incremental$.manageClassfiles(Incremental.scala:129)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.Incremental$.compile(Incremental.scala:75)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompile$.apply(Compile.scala:70)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompilerImpl.compileInternal(IncrementalCompilerImpl.scala:309)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompilerImpl.$anonfun$compileIncrementally$1(IncrementalCompilerImpl.scala:267)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompilerImpl.handleCompilationError(IncrementalCompilerImpl.scala:158)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompilerImpl.compileIncrementally(IncrementalCompilerImpl.scala:237)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.inc.IncrementalCompilerImpl.compile(IncrementalCompilerImpl.scala:68)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.Defaults$.compileIncrementalTaskImpl(Defaults.scala:1382)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.Defaults$.$anonfun$compileIncrementalTask$1(Defaults.scala:1364)[0m
+[0m[[0m[31merror[0m] [0m[0mscala.Function1.$anonfun$compose$1(Function1.scala:44)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.util.$tilde$greater.$anonfun$$u2219$1(TypeFunctions.scala:42)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.std.Transform$$anon$4.work(System.scala:64)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.Execute.$anonfun$submit$2(Execute.scala:257)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:16)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.Execute.work(Execute.scala:266)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.Execute.$anonfun$submit$1(Execute.scala:257)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:167)[0m
+[0m[[0m[31merror[0m] [0m[0msbt.CompletionService$$anon$2.call(CompletionService.scala:32)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.util.concurrent.FutureTask.run(FutureTask.java:266)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.util.concurrent.FutureTask.run(FutureTask.java:266)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)[0m
+[0m[[0m[31merror[0m] [0m[0mjava.lang.Thread.run(Thread.java:745)[0m
+[0m[[0m[31merror[0m] [0m[0m           [0m
