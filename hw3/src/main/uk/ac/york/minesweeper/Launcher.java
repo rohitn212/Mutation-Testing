@@ -165,13 +165,11 @@ public class Launcher {
             method.setModifiers(method.getModifiers() | Modifier.STATIC);
     }
 
-    // Tested
+    // todo:testing
     public void mutationOMD(CtClass c) {
         HashSet<String> hs = new HashSet<>();
         for (CtMethod method : c.getDeclaredMethods()) {
-            if (!hs.contains(method.getName()))
-                hs.add(method.getName());
-            else {
+            if (!hs.add(method.getName())) {
                 try {
                     c.removeMethod(method);
                 } catch (NotFoundException e) {
