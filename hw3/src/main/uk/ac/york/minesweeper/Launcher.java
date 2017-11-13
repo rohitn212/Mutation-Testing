@@ -8,9 +8,7 @@ import org.junit.runner.Request;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Launcher {
     public final int noOfMutations = 8;
@@ -128,9 +126,7 @@ public class Launcher {
             for (CtMethod m1 : c.getDeclaredMethods()) {
                 for (CtMethod m2 : c2.getMethods()) {
                     if (m1.equals(m2)) {
-                        System.out.println(c2.getDeclaredMethod("getWidth"));
                         c2.getDeclaredMethod(m2.getName()).setName("newMethodName");
-                        System.out.println(c2.getDeclaredMethod("newMethodName"));
                     }
                 }
             }
@@ -139,6 +135,8 @@ public class Launcher {
         }
     }
 
+
+    // Tested
     public void mutationJDC(CtClass c) {
         for (CtConstructor constructor : c.getDeclaredConstructors()) {
             if (constructor.isConstructor()) {
@@ -151,6 +149,7 @@ public class Launcher {
         }
     }
 
+    // Tested
     public void mutationJSD(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(field.getModifiers() & ~Modifier.STATIC);
@@ -158,6 +157,7 @@ public class Launcher {
             method.setModifiers(method.getModifiers() & ~Modifier.STATIC);
     }
 
+    // Tested
     public void mutationJSI(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(field.getModifiers() | Modifier.STATIC);
@@ -165,16 +165,17 @@ public class Launcher {
             method.setModifiers(method.getModifiers() | Modifier.STATIC);
     }
 
+    // Tested
     public void mutationOMD(CtClass c) {
+        HashSet<String> hs = new HashSet<>();
         for (CtMethod method : c.getDeclaredMethods()) {
-            String methodName = method.getName();
-            for (CtMethod otherMethod : c.getDeclaredMethods()) {
-                if (methodName.equalsIgnoreCase(otherMethod.getName())) {
-                    try {
-                        c.removeMethod(otherMethod);
-                    } catch (NotFoundException e) {
-                        e.printStackTrace();
-                    }
+            if (!hs.contains(method.getName()))
+                hs.add(method.getName());
+            else {
+                try {
+                    c.removeMethod(method);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -246,38 +247,27 @@ public class Launcher {
         ClassPool cp = ClassPool.getDefault();
         CtClass c;
         Launcher l = new Launcher();
-        try {
-            c = cp.get(MinefieldPane.class.getName());
-            l.mutationIOR(c);
-            c.writeFile("test");
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        } catch (CannotCompileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-//        JUnitCore junit = new JUnitCore();
-//        MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
-//        Thread[] threadArr = new Thread[l.noOfMutations];
-//        for (int i = 0; i < threadArr.length; i++) {
-//            threadArr[i] = new Thread();
-//            try {
-//                c = cp.get(mutationArr[i].className);
-//                junit.run(Request.method(Class.forName(PreMutationTests.class.getName()),
-//                        mutationArr[i].mutationTestName));
-//                ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.copyInstrumList();
-//                TemplateClass.instrumList.clear();
-//                l.callMutation(mutationArr[i].mutation, c);
-//                l.writeToClass(mutationArr[i].mutation + "Mutation", c);
-//                junit.run(Request.method(Class.forName(PostMutationTests.class.getName()),
-//                        mutationArr[i].mutationTestName));
-//                l.compareInstrumLists(oldInstrumList, TemplateClass.instrumList);
-//                threadArr[i].join();
-//            } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        JUnitCore junit = new JUnitCore();
+        MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
+        Thread[] threadArr = new Thread[l.noOfMutations];
+        for (int i = 0; i < threadArr.length; i++) {
+            threadArr[i] = new Thread();
+            try {
+                c = cp.get(mutationArr[i].className);
+                junit.run(Request.method(Class.forName(PreMutationTests.class.getName()),
+                        mutationArr[i].mutationTestName));
+                ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.copyInstrumList();
+                TemplateClass.instrumList.clear();
+                l.callMutation(mutationArr[i].mutation, c);
+                l.writeToClass(mutationArr[i].mutation + "Mutation", c);
+                junit.run(Request.method(Class.forName(PostMutationTests.class.getName()),
+                        mutationArr[i].mutationTestName));
+                l.compareInstrumLists(oldInstrumList, TemplateClass.instrumList);
+                threadArr[i].join();
+            } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
