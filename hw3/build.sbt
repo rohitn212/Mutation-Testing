@@ -14,3 +14,5 @@ libraryDependencies += "com.novocode" % "junit-interface" % "0.10" % "test"
 
 //docs https://github.com/sbt/junit-interface
 testOptions += Tests.Argument(TestFrameworks.JUnit, "-q", "-v")
+
+mainClass in (Compile, run) := Some("src.main.uk.ac.york.minesweeper.Launcher")
