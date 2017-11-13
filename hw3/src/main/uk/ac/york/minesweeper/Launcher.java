@@ -64,7 +64,6 @@ public class Launcher {
         if (i1.getPair().size() != i2.getPair().size()) {
             return false;
         }
-
         else {
             for (int i=0; i<i1.getPair().size(); i++) {
                 if (i1.getPair().get(i).getKey().equals(i2.getPair().get(i).getKey())
@@ -167,9 +166,9 @@ public class Launcher {
 
     // todo:testing
     public void mutationOMD(CtClass c) {
-        HashSet<String> hs = new HashSet<>();
+        HashSet<String> set = new HashSet<>();
         for (CtMethod method : c.getDeclaredMethods()) {
-            if (!hs.add(method.getName())) {
+            if (!set.add(method.getName())) {
                 try {
                     c.removeMethod(method);
                 } catch (NotFoundException e) {
@@ -179,6 +178,7 @@ public class Launcher {
         }
     }
 
+    /*
     public void mutationOMR(CtClass c) {
         for (CtMethod method : c.getDeclaredMethods()) {
             String methodName = method.getName();
@@ -188,13 +188,30 @@ public class Launcher {
                     int otherMethodTypeNo = otherMethod.getParameterTypes().length;
                     if (methodName.equalsIgnoreCase(otherMethod.getName())) {
                         if (methodTypeNo > otherMethodTypeNo && otherMethodTypeNo == 0) {
-                            otherMethod.setBody(methodName + "();");
+                            otherMethod.setBody("return " + methodName + "();");
                         }
                         else if (methodTypeNo < otherMethodTypeNo && methodTypeNo == 0) {
-                            method.setBody(otherMethod.getName() + "();");
+                            method.setBody("return " + otherMethod.getName() + "();");
                         }
                     }
                 }
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            } catch (CannotCompileException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    */
+
+    // todo:testing
+    public void mutationOMR(CtClass c) {
+        HashSet<String> set = new HashSet<String>();
+        for (CtMethod method : c.getDeclaredMethods()) {
+            try {
+                if (method.getParameterTypes().length == 0)
+                    if (!set.add(method.getName()))
+                        method.setBody("return " + method.getName() + "();");
             } catch (NotFoundException e) {
                 e.printStackTrace();
             } catch (CannotCompileException e) {
