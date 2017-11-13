@@ -103,9 +103,17 @@ public class Launcher {
             method.setModifiers(Modifier.setPrivate(method.getModifiers()));
     }
 
-    // Tested
+    // todo:testing
     public void mutationIOD(CtClass c) {
         try {
+            HashSet<String> set = new HashSet<>();
+            for (CtMethod method: c.getSuperclass().getDeclaredMethods())
+                set.add(method.getName());
+            for (CtMethod method: c.getDeclaredMethods()) {
+                if (set.contains(method.getName()))
+                    c.removeMethod(method);
+            }
+            /*
             CtClass c2 = c.getSuperclass();
             for (CtMethod m1 : c.getDeclaredMethods()) {
                 for (CtMethod m2 : c2.getDeclaredMethods()) {
@@ -114,15 +122,27 @@ public class Launcher {
                     }
                 }
             }
+            */
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
     }
 
 
-    // Tested
+    // todo:testing
     public void mutationIOR(CtClass c) {
         try {
+            StringBuilder newName = new StringBuilder("newMethodName");
+            HashSet<String> set = new HashSet<>();
+            int count = 0;
+            for (CtMethod method: c.getSuperclass().getDeclaredMethods())
+                set.add(method.getName());
+            for (CtMethod method: c.getDeclaredMethods()) {
+                if (set.contains(method.getName()))
+                    c.getSuperclass().getDeclaredMethod(method.getName()).
+                            setName(newName.append(++count).toString());
+            }
+            /*
             CtClass c2 = c.getSuperclass();
             for (CtMethod m1 : c.getDeclaredMethods()) {
                 for (CtMethod m2 : c2.getMethods()) {
@@ -131,6 +151,7 @@ public class Launcher {
                     }
                 }
             }
+            */
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
@@ -222,6 +243,7 @@ public class Launcher {
         }
     }
 
+    // todo:testing
     public void mutationPMD(CtClass c) {
         try {
             for (CtField field : c.getDeclaredFields()) {
