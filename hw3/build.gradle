@@ -41,7 +41,7 @@ dependencies {
     compile 'junit:junit:4.12'
 }
 
-mainClassName = "uk.ac.york.minesweeper.MinesweeperFrame"
+mainClassName = "uk.ac.york.minesweeper.Launcher"
 
 test {
     testLogging {

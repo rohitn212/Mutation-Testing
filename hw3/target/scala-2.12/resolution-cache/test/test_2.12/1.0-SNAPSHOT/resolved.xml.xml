@@ -4,7 +4,7 @@
 		module="test_2.12"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20171005164946"
+		publication="20171113171103"
 	>
 		<description>
 		test
@@ -34,5 +34,6 @@
 		<dependency org="org.scala-lang" name="scala-library" rev="2.12.3" conf="scala-tool->default,optional(default)"/>
 		<dependency org="junit" name="junit" rev="4.12" conf="compile->default(compile)"/>
 		<dependency org="com.novocode" name="junit-interface" rev="0.10" conf="test->default(compile)"/>
+		<dependency org="org.javassist" name="javassist" rev="3.22.0-GA" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>
