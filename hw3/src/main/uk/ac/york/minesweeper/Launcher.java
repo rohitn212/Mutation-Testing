@@ -6,7 +6,6 @@ import org.junit.runner.Request;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -79,8 +78,6 @@ public class Launcher {
                                     ArrayList<TemplateClass.Instrument> newInstrumList) {
         if (oldInstrumList == null || newInstrumList == null) throw new NullPointerException();
         int count = 0;
-
-        // todo: deep compare instead of reference compare
         while (count < oldInstrumList.size() && count < newInstrumList.size()) {
             if (!deepCompare(oldInstrumList.get(count), newInstrumList.get(count))) {
                 System.out.println("\nChange detected");
@@ -101,36 +98,24 @@ public class Launcher {
             method.setModifiers(Modifier.setPrivate(method.getModifiers()));
     }
 
-    // todo:testing
+    // Tested
     public void mutationIOD(CtClass c) {
-//        try {
-//            HashSet<String> set = new HashSet<>();
-//            if (c.getSuperclass() != null) {
-//                for (CtMethod method: c.getSuperclass().getDeclaredMethods())
-//                    set.add(method.getName());
-//                for (CtMethod method: c.getDeclaredMethods()) {
-//                    if (set.contains(method.getName()))
-//                        c.removeMethod(method);
-//                }
-//            }
-//
-//            /*
-//            CtClass c2 = c.getSuperclass();
-//            for (CtMethod m1 : c.getDeclaredMethods()) {
-//                for (CtMethod m2 : c2.getDeclaredMethods()) {
-//                    if (m1.equals(m2)) {
-//                        c.removeMethod(m1);
-//                    }
-//                }
-//            }
-//            */
-//        } catch (NotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            HashSet<String> set = new HashSet<>();
+            if (c.getSuperclass() != null) {
+                for (CtMethod method: c.getSuperclass().getDeclaredMethods())
+                    set.add(method.getName());
+                for (CtMethod method: c.getDeclaredMethods()) {
+                    if (set.contains(method.getName()))
+                        c.removeMethod(method);
+                }
+            }
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-
-    // todo:testing
+    // Tested
     public void mutationIOR(CtClass c) {
         try {
             StringBuilder newName = new StringBuilder("newMethodName");
@@ -143,21 +128,10 @@ public class Launcher {
                     c.getSuperclass().getDeclaredMethod(method.getName()).
                             setName(newName.append(++count).toString());
             }
-            /*
-            CtClass c2 = c.getSuperclass();
-            for (CtMethod m1 : c.getDeclaredMethods()) {
-                for (CtMethod m2 : c2.getMethods()) {
-                    if (m1.equals(m2)) {
-                        c2.getDeclaredMethod(m2.getName()).setName("newMethodName");
-                    }
-                }
-            }
-            */
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
     }
-
 
     // Tested
     public void mutationJDC(CtClass c) {
@@ -180,6 +154,7 @@ public class Launcher {
             method.setModifiers(method.getModifiers() | Modifier.STATIC);
     }
 
+    // Tested
     public void mutationOMD(CtClass c) {
         HashSet<String> set = new HashSet<>();
         for (CtMethod method : c.getDeclaredMethods()) {
@@ -207,16 +182,16 @@ public class Launcher {
         }
     }
 
-    // todo:testing
+    // Tested
     public void mutationPMD(CtClass c) {
-//        try {
-//            for (CtField field : c.getDeclaredFields()) {
-//                if (field.getType().getSuperclass() != null)
-//                    field.setType(field.getType().getSuperclass());
-//            }
-//        } catch (NotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            for (CtField field : c.getDeclaredFields()) {
+                if (field.getType().getSuperclass() != null)
+                    field.setType(field.getType().getSuperclass());
+            }
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static MutationInfo[] parseConfigFile(File configFile, int noOfMutations) {
@@ -250,7 +225,6 @@ public class Launcher {
         ClassPool cp = ClassPool.getDefault();
         CtClass c;
         Launcher l = new Launcher();
-
         JUnitCore junit = new JUnitCore();
         MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
         Thread[] threadArr = new Thread[l.noOfMutations];
