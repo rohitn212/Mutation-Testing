@@ -26,6 +26,7 @@ to build, use the command: ```sbt clean compile test```
 
 to run, use the command: ```sbt run```
 
+
 The inital repository is: https://github.com/jcowgill/java-minesweeper
 
 ------------------------------------
