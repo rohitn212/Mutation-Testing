@@ -59,6 +59,7 @@ public class Launcher {
         }
     }
 
+    // to deep compare two instrument objects instead of shallow pointer reference comparison
     public boolean deepCompare(TemplateClass.Instrument i1, TemplateClass.Instrument i2) {
         if (i1.getPair().size() != i2.getPair().size()) {
             return false;
@@ -74,6 +75,8 @@ public class Launcher {
         return false;
     }
 
+    // compares and prints execution trace of pre and post mutation code
+    // prints out differences in values
     public void compareInstrumLists(ArrayList<TemplateClass.Instrument> oldInstrumList,
                                     ArrayList<TemplateClass.Instrument> newInstrumList) {
         if (oldInstrumList == null || newInstrumList == null) throw new NullPointerException();
@@ -90,7 +93,7 @@ public class Launcher {
         }
     }
 
-    // Tested
+    // Changes all fields and methods to private access
     public void mutationAMC(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(Modifier.setPrivate(field.getModifiers()));
@@ -98,7 +101,7 @@ public class Launcher {
             method.setModifiers(Modifier.setPrivate(method.getModifiers()));
     }
 
-    // Tested
+    // Removes overriden methods from the subclass
     public void mutationIOD(CtClass c) {
         try {
             HashSet<String> set = new HashSet<>();
@@ -115,7 +118,7 @@ public class Launcher {
         }
     }
 
-    // Tested
+    // Changes name of method in superclass that gets overriden by its subclass
     public void mutationIOR(CtClass c) {
         try {
             StringBuilder newName = new StringBuilder("newMethodName");
@@ -133,7 +136,7 @@ public class Launcher {
         }
     }
 
-    // Tested
+    // Deletes constructors from class so that the default constructor is called
     public void mutationJDC(CtClass c) {
         for (CtConstructor constructor : c.getDeclaredConstructors()) {
             if (constructor.isConstructor()) {
@@ -146,7 +149,7 @@ public class Launcher {
         }
     }
 
-    // Tested
+    // Changes methods and fields to static
     public void mutationJSI(CtClass c) {
         for (CtField field : c.getDeclaredFields())
             field.setModifiers(field.getModifiers() | Modifier.STATIC);
@@ -154,7 +157,7 @@ public class Launcher {
             method.setModifiers(method.getModifiers() | Modifier.STATIC);
     }
 
-    // Tested
+    // Deletes overloaded methods
     public void mutationOMD(CtClass c) {
         HashSet<String> set = new HashSet<>();
         for (CtMethod method : c.getDeclaredMethods()) {
@@ -168,7 +171,7 @@ public class Launcher {
         }
     }
 
-    // Tested
+    // Sets overloaded method's body to call original method
     public void mutationOMR(CtClass c) {
         HashSet<String> set = new HashSet<String>();
         for (CtMethod method : c.getDeclaredMethods()) {
@@ -182,7 +185,7 @@ public class Launcher {
         }
     }
 
-    // Tested
+    // Changes type of fields to it's superclass type
     public void mutationPMD(CtClass c) {
         try {
             for (CtField field : c.getDeclaredFields()) {
@@ -194,6 +197,8 @@ public class Launcher {
         }
     }
 
+    // parses config file to produce an array of MutationInfo objects
+    // each object storing the necessary info to run a different mutation
     public static MutationInfo[] parseConfigFile(File configFile, int noOfMutations) {
         Scanner s = null;
         MutationInfo[] mutationArr = new MutationInfo[noOfMutations];
@@ -212,6 +217,7 @@ public class Launcher {
         return mutationArr;
     }
 
+    // saves the post mutated code
     public void writeToClass(String newFileName, CtClass c) {
         try {
             c.setName(newFileName);
@@ -227,20 +233,30 @@ public class Launcher {
         Launcher l = new Launcher();
         JUnitCore junit = new JUnitCore();
         MutationInfo[] mutationArr = parseConfigFile(new File("configFile.txt"), l.noOfMutations);
+        // Thread pool to manage all threads
         Thread[] threadArr = new Thread[l.noOfMutations];
         for (int i = 0; i < threadArr.length; i++) {
+            // one thread for each mutation
             threadArr[i] = new Thread();
             try {
                 c = cp.get(mutationArr[i].className);
+                // run the pre-mutation test for a mutation first
                 junit.run(Request.method(Class.forName(PreMutationTests.class.getName()),
                         mutationArr[i].mutationTestName));
+                // store the execution trace for pre-mutated code
                 ArrayList<TemplateClass.Instrument> oldInstrumList = TemplateClass.copyInstrumList();
                 TemplateClass.instrumList.clear();
+                // run the mutation
                 l.callMutation(mutationArr[i].mutation, c);
+                // save the post-mutation code
                 l.writeToClass(mutationArr[i].mutation + "Mutation", c);
+                // run the post-mutation test
                 junit.run(Request.method(Class.forName(PostMutationTests.class.getName()),
                         mutationArr[i].mutationTestName));
+                // compare the pre-mutation execution trace and current (post-mutation)
+                // execution trace
                 l.compareInstrumLists(oldInstrumList, TemplateClass.instrumList);
+                // wait for this thread to complete
                 threadArr[i].join();
             } catch (ClassNotFoundException | NotFoundException | InterruptedException e) {
                 e.printStackTrace();
