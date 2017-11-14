@@ -106,27 +106,30 @@ public class Launcher {
 
     // todo:testing
     public void mutationIOD(CtClass c) {
-        try {
-            HashSet<String> set = new HashSet<>();
-            for (CtMethod method: c.getSuperclass().getDeclaredMethods())
-                set.add(method.getName());
-            for (CtMethod method: c.getDeclaredMethods()) {
-                if (set.contains(method.getName()))
-                    c.removeMethod(method);
-            }
-            /*
-            CtClass c2 = c.getSuperclass();
-            for (CtMethod m1 : c.getDeclaredMethods()) {
-                for (CtMethod m2 : c2.getDeclaredMethods()) {
-                    if (m1.equals(m2)) {
-                        c.removeMethod(m1);
-                    }
-                }
-            }
-            */
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            HashSet<String> set = new HashSet<>();
+//            if (c.getSuperclass() != null) {
+//                for (CtMethod method: c.getSuperclass().getDeclaredMethods())
+//                    set.add(method.getName());
+//                for (CtMethod method: c.getDeclaredMethods()) {
+//                    if (set.contains(method.getName()))
+//                        c.removeMethod(method);
+//                }
+//            }
+//
+//            /*
+//            CtClass c2 = c.getSuperclass();
+//            for (CtMethod m1 : c.getDeclaredMethods()) {
+//                for (CtMethod m2 : c2.getDeclaredMethods()) {
+//                    if (m1.equals(m2)) {
+//                        c.removeMethod(m1);
+//                    }
+//                }
+//            }
+//            */
+//        } catch (NotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
@@ -217,14 +220,14 @@ public class Launcher {
 
     // todo:testing
     public void mutationPMD(CtClass c) {
-        try {
-            for (CtField field : c.getDeclaredFields()) {
-                if (field.getType().getSuperclass() != null)
-                    field.setType(field.getType().getSuperclass());
-            }
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            for (CtField field : c.getDeclaredFields()) {
+//                if (field.getType().getSuperclass() != null)
+//                    field.setType(field.getType().getSuperclass());
+//            }
+//        } catch (NotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static MutationInfo[] parseConfigFile(File configFile, int noOfMutations) {
