@@ -43,9 +43,6 @@ public class Launcher {
             case "JDC":
                 this.mutationJDC(c);
                 break;
-            case "JSD":
-                this.mutationJSD(c);
-                break;
             case "JSI":
                 this.mutationJSI(c);
                 break;
@@ -173,14 +170,6 @@ public class Launcher {
                 }
             }
         }
-    }
-
-    // Tested
-    public void mutationJSD(CtClass c) {
-        for (CtField field : c.getDeclaredFields())
-            field.setModifiers(field.getModifiers() & ~Modifier.STATIC);
-        for (CtMethod method : c.getDeclaredMethods())
-            method.setModifiers(method.getModifiers() & ~Modifier.STATIC);
     }
 
     // Tested
