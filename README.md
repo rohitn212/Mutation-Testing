@@ -10,15 +10,15 @@ Name - Rohit Nambiar, UIN - '679882752', UID - rnambi2, Undergrad
 
 ----------------------------------- 
 
-To set this project up, first download the folder. In this folder you will see the build.sbt and application files.
-To run the sbt build, go to the root folder of the application, the directory that contains the build.sbt file
-and run the following command:
+To set this project up, first download the folder. In this folder you will see the build.gradle and application files.
+To run the gradle build, go to the root folder of the application, the directory that contains the build.gradle file
+and run the following commands.
 
-# SBT:
+# Gradle:
 
-to build, use the command: ```sbt clean compile test```
+to build, use the command: ```gradle build```
 
-to run, use the command: ```sbt run```
+to run, use the command: ```gradle run```
 
 The inital repository is: https://github.com/jcowgill/java-minesweeper
 
@@ -90,4 +90,4 @@ Step 4: Mutate the code
 
 Step 5: Run the post mutation tests
 
-Step 6: Compare the instrum list for pre mutation and post mutation tests
+Step 6: Compare the instrum list for pre mutation and post mutation tests and show changes
