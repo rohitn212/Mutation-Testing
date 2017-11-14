@@ -10,8 +10,8 @@ Name - Rohit Nambiar, UIN - '679882752', UID - rnambi2, Undergrad
 
 ----------------------------------- 
 
-To set this project up, first download the folder. In this folder you will see the build.gradle, build.sbt, and application files.
-To run the gradle and sbt builds, go to the root folder of the application, the directory that contains the build.gradle and build.sbt files
+To set this project up, first download the folder. In this folder you will see the build.gradle and application files.
+To run the gradle build, go to the root folder of the application, the directory that contains the build.gradle file
 and run the following commands.
 
 # Gradle:
@@ -19,13 +19,6 @@ and run the following commands.
 to build, use the command: ```gradle build```
 
 to run, use the command: ```gradle run```
-
-# SBT:
-
-to build, use the command: ```sbt clean compile test```
-
-to run, use the command: ```sbt run```
-
 
 The inital repository is: https://github.com/jcowgill/java-minesweeper
 
