@@ -10,9 +10,15 @@ Name - Rohit Nambiar, UIN - '679882752', UID - rnambi2, Undergrad
 
 ----------------------------------- 
 
-To set this project up, first download the folder. In this folder you will see the build.sbt and application files.
-To run the sbt build, go to the root folder of the application, the directory that contains the build.sbt file
-and run the following command:
+To set this project up, first download the folder. In this folder you will see the build.gradle, build.sbt, and application files.
+To run the gradle and sbt builds, go to the root folder of the application, the directory that contains the build.gradle and build.sbt files
+and run the following commands.
+
+# Gradle:
+
+to build, use the command: ```gradle build```
+
+to run, use the command: ```gradle run```
 
 # SBT:
 
