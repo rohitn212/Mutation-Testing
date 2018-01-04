@@ -1,12 +1,12 @@
-# README for HW3 for CS474
+# README
 
 Team members:
 
-Name - Harsh Patel, UIN - '669601398', UID - hpate34, Undergrad
+Name - Harsh Patel, github - https://github.com/harsh0596
 
-Name - Harsha Dodda, UIN - '660851227', UID - dodda2, Undergrad
+Name - Harsha Dodda, github - https://github.com/harshadodda
 
-Name - Rohit Nambiar, UIN - '679882752', UID - rnambi2, Undergrad
+Name - Rohit Nambiar, github - https://github.com/rohitn212
 
 ----------------------------------- 
 
